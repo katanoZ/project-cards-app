@@ -78,6 +78,12 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+staging:
+  <<: *default
+  database: quasi-case_staging
+  username: quasi-case
+  password: <%= ENV['QUASI-CASE_DATABASE_PASSWORD'] %>
+
 production:
   <<: *default
   database: quasi-case_production
