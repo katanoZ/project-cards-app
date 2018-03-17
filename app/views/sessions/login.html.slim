@@ -1,2 +1,8 @@
-h1 Sessions#login
-p Find me in app/views/sessions/login.html.slim
+.row
+  .card.col-sm-5.text-center.border-middle-purple.mx-auto.my-5.p-0
+    .card-header.text-light.bg-middle-purple.p-4
+      h4.m-0 ログイン・新規登録
+    .card-body.p-5
+      = link_to 'Facebook', root_path, class: 'btn btn-lg btn-block btn-secondary bg-light-purple border-middle-purple text-middle-purple mb-4'
+      = link_to 'Twitter', root_path, class: 'btn btn-lg btn-block btn-secondary bg-light-purple border-middle-purple text-middle-purple mb-4'
+      = link_to 'Github', root_path, class: 'btn btn-lg btn-block btn-secondary bg-light-purple border-middle-purple text-middle-purple'

@@ -16,5 +16,4 @@ body {
   height: 60px; /* フッタの固定高さを設定 */
   line-height: 60px; /* テキストを垂直に中央に配置 */
   text-align: center;
-  background-color: rgba(225, 225, 255, 1);
 }
