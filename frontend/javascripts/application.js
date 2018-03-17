@@ -1,1 +1,1 @@
-import './sample'
+import 'bootstrap/dist/js/bootstrap'

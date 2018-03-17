@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    title Project-cards-app
+    = csrf_meta_tags
+    = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    header.header
+      nav.navbar.navbar-expand-sm.navbar-dark.bg-purple
+        .container
+          button.navbar-toggler type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'
+            span.navbar-toggler-icon
+          #navbarSupportedContent.collapse.navbar-collapse
+            ul.navbar-nav.mr-auto
+              li.nav-item.mr-0.mr-sm-2.mt-2.mt-sm-0
+                = link_to 'トップ', root_path, class: 'btn btn-outline-light'
+              li.nav-item.mt-2.mt-sm-0
+                = link_to 'マイプロジェクト', root_path, class: 'btn btn-outline-light'
+            ul.navbar-nav
+              li.nav-item.mt-2.mt-sm-0
+                = link_to 'ログイン', login_path, class: 'btn btn-outline-light'
+
+    .container
+      = yield
+
+    footer.footer.bg-light-purple
+      .container
+        span.text-middle-purple ©2018 Project-cards-app
