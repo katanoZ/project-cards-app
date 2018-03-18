@@ -2,6 +2,7 @@ html {
   position: relative;
   min-height: 100%;
 }
+
 body {
   margin-bottom: 90px; /* フッタを含む下側マージンの高さ */
 }
@@ -9,6 +10,7 @@ body {
 .header {
   margin-bottom: 30px;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
