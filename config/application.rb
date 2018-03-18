@@ -17,5 +17,7 @@ module QuasiCase
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
     config.i18n.default_locale = :ja
+
+    config.rack_dev_mark.enable = !Rails.env.production?
   end
 end

@@ -75,9 +75,6 @@ GEM
     ffi (1.9.21)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    hpricot (0.8.6)
-    html2slim (0.2.0)
-      hpricot
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
@@ -109,6 +106,8 @@ GEM
     public_suffix (3.0.2)
     puma (3.11.2)
     rack (2.0.4)
+    rack-dev-mark (0.7.7)
+      rack (>= 1.1, < 2.1)
     rack-proxy (0.6.4)
       rack
     rack-test (0.8.2)
@@ -210,12 +209,12 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
-  html2slim
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
   pry-rails
   puma (~> 3.7)
+  rack-dev-mark
   rails (~> 5.1.5)
   sass-rails (~> 5.0)
   selenium-webdriver
