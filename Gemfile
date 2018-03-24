@@ -18,7 +18,11 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 gem 'slim-rails'
-gem "rack-dev-mark"
+gem 'rack-dev-mark'
+
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
