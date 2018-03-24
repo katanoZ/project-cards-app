@@ -22,6 +22,7 @@ html
                 = link_to 'ログイン', login_path, class: 'btn btn-outline-light'
 
     .container
+      = render partial: 'shared/flash'
       = yield
 
     footer.footer.bg-light-purple
