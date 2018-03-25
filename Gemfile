@@ -22,6 +22,8 @@ gem 'rack-dev-mark'
 
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth'
+gem 'omniauth-twitter'
 gem 'dotenv-rails'
 
 group :development, :test do
