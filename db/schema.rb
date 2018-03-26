@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20180323121254) do
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["provider"], name: "index_users_on_provider", unique: true
+    t.index ["uid"], name: "index_users_on_uid", unique: true
   end
 
 end
