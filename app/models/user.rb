@@ -5,7 +5,7 @@ class User < ApplicationRecord
     name = auth[:info][:name]
     image_url = auth[:info][:image]
 
-    self.find_or_create_by(provider: provider, uid: uid) do |user|
+    find_or_create_by(provider: provider, uid: uid) do |user|
       user.name = name
       user.image_url = image_url
     end
