@@ -9,11 +9,6 @@ header.header
             = link_to 'トップ', root_path, class: 'btn btn-outline-light'
           li.nav-item.mt-2.mt-sm-0.ml-0.ml-sm-2
             = link_to 'マイプロジェクト', root_path, class: 'btn btn-outline-light'
-          li.nav-item.mt-3.mt-sm-0.ml-0.ml-sm-3
-            form.form-inline
-              input.form-control type='search' placeholder='検索' aria-label='Search'
-              button.btn.btn-outline-light.ml-0.ml-md-1.mt-1.mt-md-0 type='submit'
-                | 検索
 
         ul.navbar-nav.mt-3.mt-sm-0.ml-0.ml-sm-2
           - if logged_in?
