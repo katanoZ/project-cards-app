@@ -1,0 +1,16 @@
+.row.align-items-center.mt-100px
+
+  .col-md-4.ml-auto.text-center.col-lg-3
+    =image_tag @user.image_url, class: 'mypage-image img-fluid'
+  .col-md-5.mr-auto.col-lg-4.ml-lg-5
+    = form_with model: @user do |f|
+      = f.text_field :name, placeholder: '名前を入力', id: 'mypage_name', class: 'form-control form-control-lg text-purple mt-4 mt-md-0'
+      label.btn.btn-lg.btn-block.btn-secondary.bg-light-purple.border-middle-purple.text-middle-purple.mt-2.mt-lg-4 for='mypage_filefield'
+        #mypage_filename.p.mb-0 ファイルを選択
+        = f.file_field :image_url, id: 'mypage_filefield', class: 'd-none'
+      = f.submit '更新', id: 'mypage_submit', class: 'btn btn-lg btn-block btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-lg-3 mb-lg-4 disabled opacity-02'
+    .row
+      .col-8.pr-2
+        = link_to 'ログアウト', '#', class: 'btn btn-lg btn-block btn-outline-secondary mt-5'
+      .col-4.pl-0
+        = link_to '退会', '#', class: 'btn btn-lg btn-block btn-outline-secondary mt-5'
