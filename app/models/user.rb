@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   attr_accessor :message
 
+  validates :name, presence: true
+
   def self.find_or_create_from_auth(auth)
     provider = auth[:provider]
     uid = auth[:uid]
