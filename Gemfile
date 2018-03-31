@@ -19,9 +19,10 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'slim-rails'
 gem 'rack-dev-mark'
-
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-github'
 gem 'dotenv-rails'
 
 group :development, :test do
