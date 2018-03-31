@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  mount_uploader :my_image, MyImageUploader
+
   attr_accessor :message
 
   validates :name, presence: true
@@ -7,11 +9,11 @@ class User < ApplicationRecord
     provider = auth[:provider]
     uid = auth[:uid]
     name = auth[:info][:name]
-    image_url = auth[:info][:image]
+    sns_image = auth[:info][:image]
 
     find_or_create_by(provider: provider, uid: uid) do |user|
       user.name = name
-      user.image_url = image_url
+      user.sns_image = sns_image
     end
   end
 

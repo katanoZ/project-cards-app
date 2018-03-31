@@ -11,14 +11,14 @@ header.header
             = link_to 'マイプロジェクト', root_path, class: 'btn btn-outline-light'
 
         ul.navbar-nav.mt-3.mt-sm-0.ml-0.ml-sm-2
-          - if logged_in?
+          - if logged_in_by_correct_user?
             li.nav-item
               h5.my-0.my-sm-1
                 span.badge.badge-light
                   | 0
             li.nav-item.mt-2.mt-sm-0.ml-0.ml-sm-1.ml-md-3
               = link_to mypage_path do
-                = image_tag current_user.image_url, class: 'icon-image'
+                = image_tag image_file(current_user), class: 'icon-image'
           - else
             li.nav-item
               = link_to 'ログイン', login_path, class: 'btn btn-outline-light'
