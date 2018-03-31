@@ -4,6 +4,6 @@ $(window).on('load', function(){
   $('#mypage_filefield').on('change', enable_submit);
 
   function enable_submit(){
-    $('#mypage_submit').removeClass('disabled opacity-02');
+    $('#mypage_submit').removeClass('opacity-02').removeAttr('disabled');
   };
 });
