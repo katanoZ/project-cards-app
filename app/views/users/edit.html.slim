@@ -8,8 +8,7 @@
       = f.text_field :name, placeholder: '名前を入力', id: 'mypage_name', class: mypage_name_class(@user)
       - if @user.errors[:name].any?
         - @user.errors[:name].each do |msg|
-          .invalid-feedback.d-block
-            = msg
+          = mypage_name_error(msg)
 
       label.btn.btn-lg.btn-block.btn-secondary.bg-light-purple.border-middle-purple.text-middle-purple.mt-2.mt-lg-4 for='mypage_filefield'
         #mypage_filename.p.mb-0 ファイルを選択
