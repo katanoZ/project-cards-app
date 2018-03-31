@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  attr_accessor :message
+
   def self.find_or_create_from_auth(auth)
     provider = auth[:provider]
     uid = auth[:uid]
@@ -9,5 +11,13 @@ class User < ApplicationRecord
       user.name = name
       user.image_url = image_url
     end
+  end
+
+  after_find do
+    @message = 'ログインしました'
+  end
+
+  after_create do
+    @message = 'アカウント登録しました'
   end
 end

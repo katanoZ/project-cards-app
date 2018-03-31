@@ -1,0 +1,23 @@
+header.header
+  nav.navbar.navbar-expand-sm.navbar-dark.bg-purple
+    .container
+      button.navbar-toggler type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'
+        span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto.mt-3.mt-sm-0
+          li.nav-item
+            = link_to 'トップ', root_path, class: 'btn btn-outline-light'
+          li.nav-item.mt-2.mt-sm-0.ml-0.ml-sm-2
+            = link_to 'マイプロジェクト', root_path, class: 'btn btn-outline-light'
+
+        ul.navbar-nav.mt-3.mt-sm-0.ml-0.ml-sm-2
+          - if logged_in?
+            li.nav-item
+              h5.my-0.my-sm-1
+                span.badge.badge-light
+                  | 0
+            li.nav-item.mt-2.mt-sm-0.ml-0.ml-sm-1.ml-md-3
+              = image_tag current_user.image_url, class: 'icon-image'
+          - else
+            li.nav-item
+              = link_to 'ログイン', login_path, class: 'btn btn-outline-light'
