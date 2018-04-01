@@ -3,10 +3,10 @@
 
   = render 'users/name_errors', user: user
 
-  = f.label :image, class: mypage_label_class(user), for: 'mypage_filefield'
-    #mypage_filename.mb-0 ファイルを選択
+  = f.label :image, class: mypage_label_class(user), for: 'js-mypage_filefield'
+    #js-mypage_filename.mb-0 ファイルを選択
 
-  = f.file_field :image, id: 'mypage_filefield', class: 'd-none'
+  = f.file_field :image, id: 'js-mypage_filefield', class: 'd-none'
   = f.hidden_field :image_cache
 
   = render 'users/image_errors', user: user
