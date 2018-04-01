@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate
-    return if logged_in?
+    return if logged_in_by_correct_user?
     redirect_to login_path, alert: 'ログインしてください'
   end
 end
