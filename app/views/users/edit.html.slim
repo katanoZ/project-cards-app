@@ -5,7 +5,7 @@
 
   .col-md-5.mr-auto.col-lg-4.ml-lg-5
     = form_with model: @user do |f|
-      = f.text_field :name, placeholder: '名前を入力', id: 'mypage_name', class: name_class(@user)
+      = f.text_field :name, placeholder: '名前を入力', class: name_class(@user)
       - if @user.errors[:name].any?
         - @user.errors[:name].each do |msg|
           = name_error(msg)
@@ -19,7 +19,7 @@
         - @user.errors[:my_image].each do |msg|
           = filefield_error(msg)
 
-      = f.submit '更新', id: 'mypage_submit', class: 'btn btn-lg btn-block btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-lg-3 mb-lg-4 opacity-02', disabled: 'disabled'
+      = f.submit '更新', class: 'btn btn-lg btn-block btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-lg-3 mb-lg-4'
 
     .row
       .col-8.pr-2
