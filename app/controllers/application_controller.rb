@@ -13,4 +13,9 @@ class ApplicationController < ActionController::Base
     return unless logged_in?
     @current_user ||= User.find(session[:user_id])
   end
+
+  def authenticate
+    return if logged_in?
+    redirect_to login_path, alert: 'ログインしてください'
+  end
 end
