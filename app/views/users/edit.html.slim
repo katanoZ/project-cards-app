@@ -11,7 +11,8 @@
           = name_error(msg)
 
       label class='#{filefield_class(@user)}' for='mypage_filefield'
-        #mypage_filename.p.mb-0 ファイルを選択
+        #mypage_filename.p.mb-0
+          = filefield_button_text(@user)
         = f.file_field :my_image, id: 'mypage_filefield', class: 'd-none'
         = f.hidden_field :my_image_cache
       - if @user.errors[:my_image].any?

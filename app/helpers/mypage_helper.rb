@@ -26,4 +26,12 @@ module MypageHelper
       msg
     end
   end
+
+  def filefield_button_text(user)
+    if user.my_image.filename.present?
+      user.my_image.filename
+    else
+      'ファイルを選択'
+    end
+  end
 end
