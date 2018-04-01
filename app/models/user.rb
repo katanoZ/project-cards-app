@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  mount_uploader :my_image, MyImageUploader
+  mount_uploader :my_image, MypageImageUploader
 
   attr_accessor :message
 
