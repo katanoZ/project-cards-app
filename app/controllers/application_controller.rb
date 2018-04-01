@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def current_user
     return unless logged_in?
-    @current_user ||= User.find(session[:user_id])
+    @current_user ||= User.find(session[:user_id]).decorate
   end
 
   def logged_in_by_correct_user?

@@ -18,7 +18,9 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 gem 'slim-rails'
+gem 'draper'
 gem 'rack-dev-mark'
+
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'

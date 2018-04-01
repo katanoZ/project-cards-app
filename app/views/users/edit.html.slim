@@ -1,25 +1,19 @@
 .row.align-items-center.mt-100px
 
   .col-md-4.ml-auto.text-center.col-lg-3
-    =image_tag image_file(@user), class: 'mypage-image img-fluid'
+    =image_tag @user.image_file, class: 'mypage-image img-fluid'
 
   .col-md-5.mr-auto.col-lg-4.ml-lg-5
     = form_with model: @user do |f|
-      = f.text_field :name, placeholder: '名前を入力', class: name_class(@user)
-      - if @user.errors[:name].any?
-        - @user.errors[:name].each do |msg|
-          = name_error(msg)
+      = f.text_field :name, placeholder: '名前を入力', class: @user.name_class
+      = @user.name_error
 
-      label class='#{filefield_class(@user)}' for='mypage_filefield'
-        #mypage_filename.p.mb-0
-          = filefield_button_text(@user)
-        = f.file_field :my_image, id: 'mypage_filefield', class: 'd-none'
-        = f.hidden_field :my_image_cache
-      - if @user.errors[:my_image].any?
-        - @user.errors[:my_image].each do |msg|
-          = filefield_error(msg)
+      =@user.file_field_label
+      = f.file_field :my_image, id: 'mypage_filefield', class: 'd-none'
+      = f.hidden_field :my_image_cache
+      = @user.filefield_error
 
-      = f.submit '更新', class: 'btn btn-lg btn-block btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-lg-3 mb-lg-4'
+      = f.submit '更新', class: 'btn btn-lg btn-block btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-2 mt-lg-3 mb-lg-4'
 
     .row
       .col-8.pr-2
