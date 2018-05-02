@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
 
   get 'mypage', to: 'users#edit'
-  resources :users, only: [:update]
+  patch 'mypage', to: 'users#update'
 end

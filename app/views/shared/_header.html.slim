@@ -18,7 +18,7 @@ header.header
                   | 0
             li.nav-item.mt-2.mt-sm-0.ml-0.ml-sm-1.ml-md-3
               = link_to mypage_path do
-                = image_tag current_user.image_file, class: 'icon-image'
+                = image_tag current_user.image, class: 'icon-image'
           - else
             li.nav-item
               = link_to 'ログイン', login_path, class: 'btn btn-outline-light'

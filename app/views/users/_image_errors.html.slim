@@ -1,0 +1,4 @@
+- if user.errors[:image].present?
+  .invalid-feedback.d-block
+    - user.errors[:image].each do |msg|
+      p = msg

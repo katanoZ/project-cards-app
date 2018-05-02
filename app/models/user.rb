@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  mount_uploader :my_image, MypageImageUploader
+  mount_uploader :image, MypageImageUploader
 
   attr_accessor :message
 
@@ -9,11 +9,11 @@ class User < ApplicationRecord
     provider = auth[:provider]
     uid = auth[:uid]
     name = auth[:info][:name]
-    sns_image = auth[:info][:image]
+    image_url = auth[:info][:image]
 
     find_or_create_by(provider: provider, uid: uid) do |user|
       user.name = name
-      user.sns_image = sns_image
+      user.remote_image_url = image_url
     end
   end
 

@@ -1,0 +1,14 @@
+= form_with model: user, url: mypage_path do |f|
+  = f.text_field :name, placeholder: '名前を入力', class: mypage_name_class(user)
+
+  = render 'users/name_errors', user: user
+
+  = f.label :image, class: mypage_label_class(user), for: 'mypage_filefield'
+    #mypage_filename.mb-0 = mypage_button_text(user)
+
+  = f.file_field :image, id: 'mypage_filefield', class: 'd-none'
+  = f.hidden_field :image_cache
+
+  = render 'users/image_errors', user: user
+
+  = f.submit '更新', class: 'btn btn-lg btn-block btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-2 mt-lg-3 mb-lg-4'

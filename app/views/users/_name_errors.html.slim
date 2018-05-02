@@ -1,0 +1,6 @@
+- if user.errors[:name].present?
+  .invalid-feedback.d-block
+    - user.errors[:name].each do |msg|
+      p
+        = I18n.t('activerecord.attributes.user.name')
+        = msg
