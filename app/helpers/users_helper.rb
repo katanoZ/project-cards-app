@@ -14,8 +14,4 @@ module UsersHelper
       'btn btn-lg btn-block btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-2 mt-lg-4'
     end
   end
-
-  def mypage_button_text(user)
-    user.image.filename.presence || 'ファイルを選択'
-  end
 end

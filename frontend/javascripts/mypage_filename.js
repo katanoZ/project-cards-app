@@ -1,5 +1,5 @@
 //ファイル選択時に、ファイル選択ボタンにファイル名を表示
-$(window).on('load', function(){
+$(function() {
   $('#mypage_filefield').on('change', display_filename);
 
   function display_filename(){
