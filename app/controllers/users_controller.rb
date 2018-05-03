@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :authenticate
   before_action :set_user, only: %i[edit update destroy]
 
   def edit
@@ -7,7 +6,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to root_path, notice: 'アカウント情報を更新しました'
+      redirect_to login_path, notice: 'アカウント情報を更新しました'
     else
       render :edit
     end

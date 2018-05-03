@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :authenticate
 
   if Rails.env.staging?
     http_basic_authenticate_with name: ENV.fetch('BASIC_AUTH_USERNAME'),
