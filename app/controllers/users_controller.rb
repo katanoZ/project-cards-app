@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   def destroy
     if @user.destroy
       reset_session
-      redirect_to root_path, notice: '退会が完了しました。ユーザーを削除しました。'
+      redirect_to login_path, notice: '退会が完了しました。ユーザーを削除しました。'
     else
       flash.now[:alert] = '退会の処理に失敗しました'
       render :edit
