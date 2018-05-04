@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.all.order(id: :asc)
+    @projects = Project.order(id: :asc).page(params[:page])
   end
 end
