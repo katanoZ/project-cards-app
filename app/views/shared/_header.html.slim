@@ -11,7 +11,7 @@ header.header
             = link_to 'マイプロジェクト', root_path, class: 'btn btn-outline-light'
 
         ul.navbar-nav.mt-3.mt-sm-0.ml-0.ml-sm-2
-          - if logged_in_by_correct_user?
+          - if logged_in?
             li.nav-item
               h5.my-0.my-sm-1
                 span.badge.badge-light
