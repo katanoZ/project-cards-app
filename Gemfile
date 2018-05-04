@@ -12,6 +12,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '3.2.1'
 gem 'loofah', '~> 2.2.1'
+gem 'rails-html-sanitizer', '~> 1.0.4'
 
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
@@ -19,11 +20,16 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'slim-rails'
 gem 'rack-dev-mark'
+
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
 gem 'dotenv-rails'
+
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'cloudinary'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

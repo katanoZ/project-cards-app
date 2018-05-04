@@ -1,5 +1,5 @@
 module FlashHelper
-  def flash_div_class(key)
+  def flash_class(key)
     if key == 'notice'
       'alert alert-primary alert-dismissible fade show'
     elsif key == 'alert'

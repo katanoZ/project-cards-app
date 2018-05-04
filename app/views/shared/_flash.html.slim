@@ -1,6 +1,6 @@
 - if flash
   - flash.each do |key, value|
-    div class='#{flash_div_class(key)}' role='alert'
+    div class='#{flash_class(key)}' role='alert'
       = value
       button.close type='button' data-dismiss='alert' aria-label='Close'
         span aria-hidden='true'

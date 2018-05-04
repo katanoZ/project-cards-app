@@ -1,5 +1,9 @@
 class User < ApplicationRecord
+  mount_uploader :image, MypageImageUploader
+
   attr_accessor :message
+
+  validates :name, presence: true
 
   def self.find_or_create_from_auth(auth)
     provider = auth[:provider]
@@ -9,7 +13,7 @@ class User < ApplicationRecord
 
     find_or_create_by(provider: provider, uid: uid) do |user|
       user.name = name
-      user.image_url = image_url
+      user.remote_image_url = image_url
     end
   end
 
