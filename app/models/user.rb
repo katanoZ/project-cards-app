@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   mount_uploader :image, MypageImageUploader
 
+  has_many :projects, dependent: :destroy
+
   attr_accessor :message
 
   validates :name, presence: true
