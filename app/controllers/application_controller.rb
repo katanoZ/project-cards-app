@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
                                  password: ENV.fetch('BASIC_AUTH_PASSWORD')
   end
 
-  helper_method :logged_in?, :current_user, :logged_in?
+  helper_method :logged_in?, :current_user
 
   private
 
