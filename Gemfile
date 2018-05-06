@@ -32,7 +32,7 @@ gem 'mini_magick'
 gem 'cloudinary'
 
 gem 'faker'
-gem 'kaminari'
+gem 'kaminari', '0.17.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -1,9 +1,11 @@
 class ProjectsController < ApplicationController
+  include ProjectsPagingModules
+
   def index
     if request.path == myprojects_path
-      @projects = current_user.projects.order(id: :asc).page(params[:page])
+      set_myprojects
     else
-      @projects = Project.order(id: :asc).page(params[:page])
+      set_projects
     end
   end
 end
