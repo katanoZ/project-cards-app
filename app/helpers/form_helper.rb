@@ -1,9 +1,9 @@
-module UsersHelper
-  def mypage_name_class(user)
-    if user.errors[:name].present?
-      'form-control form-control-lg text-purple mt-4 mt-md-0 is-invalid'
+module FormHelper
+  def error_supported_field_class(instance:, field:)
+    if instance.errors[field].present?
+      'form-control form-control-lg is-invalid'
     else
-      'form-control form-control-lg text-purple mt-4 mt-md-0'
+      'form-control form-control-lg'
     end
   end
 

@@ -6,6 +6,9 @@ ja:
       user:
         name: 名前
         image: 画像
+      project:
+        name: プロジェクト名
+        summary: 概要
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"

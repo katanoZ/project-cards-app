@@ -1,0 +1,6 @@
+- if instance.errors[field].present?
+  .invalid-feedback.d-block
+    - instance.errors[field].each do |msg|
+      p
+        = instance.class.human_attribute_name(field)
+        = msg
