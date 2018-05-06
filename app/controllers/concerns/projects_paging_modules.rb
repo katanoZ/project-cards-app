@@ -22,10 +22,6 @@ module ProjectsPagingModules
 
   private
 
-  def first_page?
-    params[:page].blank?
-  end
-
   def set_myprojects_first_page
     @projects = current_user.projects
                             .order(id: :desc)
