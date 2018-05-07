@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
   include ProjectsPagingModules
 
+  before_action :set_project, only: %i[edit update]
+
   def index
     if request.path == myprojects_path
       set_myprojects
@@ -23,9 +25,24 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @project.update(project_params)
+      redirect_to myprojects_path, notice: 'プロジェクトを更新しました'
+    else
+      render :edit
+    end
+  end
+
   private
 
   def project_params
     params.require(:project).permit(:name, :summary)
+  end
+
+  def set_project
+    @project = current_user.projects.find(params[:id])
   end
 end
