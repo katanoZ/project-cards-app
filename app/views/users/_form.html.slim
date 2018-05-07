@@ -1,4 +1,4 @@
-= form_with model: user, url: mypage_path do |f|
+= form_with model: user, url: mypage_path, local: true do |f|
   = f.text_field :name, placeholder: '名前を入力', class: mypage_name_class(user)
 
   = render 'users/name_errors', user: user

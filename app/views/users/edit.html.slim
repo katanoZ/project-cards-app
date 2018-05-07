@@ -8,7 +8,7 @@
 
     .row
       .col-8.pr-2
-        = link_to 'ログアウト', '#', class: 'btn btn-lg btn-block btn-outline-secondary mt-5'
+        = link_to 'ログアウト', logout_path, class: 'btn btn-lg btn-block btn-outline-secondary mt-5'
 
       .col-4.pl-0
-        = link_to '退会', '#', class: 'btn btn-lg btn-block btn-outline-secondary mt-5'
+        = link_to '退会', mypage_path, method: :delete, data: { confirm: 'ユーザーは削除されます。本当に退会しますか？' }, class: 'btn btn-lg btn-block btn-outline-secondary mt-5'
