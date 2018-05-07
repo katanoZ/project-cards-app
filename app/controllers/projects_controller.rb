@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   include ProjectsPagingModules
 
-  before_action :set_project, only: %i[edit update]
+  before_action :set_project, only: %i[edit update destroy]
 
   def index
     if request.path == myprojects_path
@@ -32,6 +32,15 @@ class ProjectsController < ApplicationController
     if @project.update(project_params)
       redirect_to myprojects_path, notice: 'プロジェクトを更新しました'
     else
+      render :edit
+    end
+  end
+
+  def destroy
+    if @project.destroy
+      redirect_to myprojects_path, notice: 'プロジェクトを削除しました'
+    else
+      flash.now[:alert] = 'プロジェクトの削除に失敗しました。'
       render :edit
     end
   end
