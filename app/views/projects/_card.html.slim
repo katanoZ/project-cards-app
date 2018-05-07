@@ -1,0 +1,22 @@
+.card.border-middle-purple.bg-light-purple.text-middle-purple.my-2
+  .card-body.overflow-scroll.pt-3.pb-2
+    .row
+      .col-2.px-0.my-auto
+        = link_to '#', class: 'text-middle-purple hover-middle-purple' do
+          i.far.fa-arrow-alt-circle-left.fa-lg
+
+      .col.text-center.overflow-scroll.px-0
+        a.link-unstyled href='#'
+          .card.btn.btn-lg.btn-outline-secondary.bg-light-purple.text-middle-purple
+            .card-body.overflow-scroll.p-0
+              .card-text.h6
+                |カード名
+
+      .col-2.text-right.px-0.my-auto
+        = link_to '#', class: 'text-middle-purple hover-middle-purple' do
+          i.far.fa-arrow-alt-circle-right.fa-lg
+
+    .row.mt-2
+      .col.text-right
+        span.mr-2.align-bottom 期限: #{l Time.now, format: :mmdd}
+        = image_tag current_user.image, class: 'size35x35 rounded-circle'

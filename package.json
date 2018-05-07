@@ -2,6 +2,10 @@
   "name": "quasi-case",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.7",
+    "@fortawesome/fontawesome-free-brands": "^5.0.12",
+    "@fortawesome/fontawesome-free-regular": "^5.0.12",
+    "@fortawesome/fontawesome-free-solid": "^5.0.12",
     "@rails/webpacker": "3.2.1",
     "bootstrap": "^4.0.0",
     "import-glob-loader": "^1.1.0",
