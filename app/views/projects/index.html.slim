@@ -1,11 +1,5 @@
-.row
-  - @projects.each do |project|
-    .col-12.col-sm-6.col-lg-4.mt-4
-      a.link-unstyled href='#'
-        .card.btn.btn-outline-secondary.border-middle-purple.bg-light-purple.text-purple.button-text-wrap.height-150px
-          .card-body.overflow-scroll
-            .card-text.h4.mt-4
-              = project.name
+#js-projects.row
+  = render 'projects/projects', projects: @projects
 
-.col-12.text-center
-  = link_to 'もっと見る', '#', class: 'btn btn-lg btn-outline-secondary mt-4 width-250px'
+#js-view_more
+  = render 'projects/view_more', projects: @projects
