@@ -1,7 +1,6 @@
 class Project < ApplicationRecord
   belongs_to :user
 
-  paginates_per 9
-
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true, length: { maximum: 140 }
+  validates :summary, length: { maximum: 300 }
 end

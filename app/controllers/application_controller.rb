@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
                                  password: ENV.fetch('BASIC_AUTH_PASSWORD')
   end
 
-  helper_method :logged_in?, :current_user
+  helper_method :logged_in?, :current_user, :first_page?
 
   private
 
@@ -23,5 +23,9 @@ class ApplicationController < ActionController::Base
   def authenticate
     return if logged_in?
     redirect_to login_path, alert: 'ログインしてください'
+  end
+
+  def first_page?
+    params[:page].blank?
   end
 end

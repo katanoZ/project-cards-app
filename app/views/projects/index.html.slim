@@ -1,6 +1,6 @@
-- if @projects.present?
-  #js-projects.row
-    = render 'projects/projects', projects: @projects
+#js-projects.row
+  = render 'projects/projects', projects: @projects
 
+- if @projects.present?
   #js-view_more
     = render 'projects/view_more', projects: @projects

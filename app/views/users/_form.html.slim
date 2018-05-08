@@ -1,7 +1,7 @@
 = form_with model: user, url: mypage_path, local: true do |f|
-  = f.text_field :name, placeholder: '名前を入力', class: mypage_name_class(user)
+  = f.text_field :name, placeholder: '名前を入力', class: error_supported_field_class(instance: user, field: :name)
 
-  = render 'users/name_errors', user: user
+  = render 'shared/form_errors', instance: user, field: :name
 
   = f.label :image, class: mypage_label_class(user), for: 'js-mypage_filefield'
     #js-mypage_filename.mb-0 ファイルを選択
