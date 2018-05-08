@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   get 'mypage', to: 'users#edit'
   patch 'mypage', to: 'users#update'
   delete 'mypage', to: 'users#destroy'
+
+  resources :projects, only: %i[index]
 end
