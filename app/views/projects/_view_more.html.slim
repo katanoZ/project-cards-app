@@ -1,2 +1,7 @@
 .col-12.text-center
-  = link_to_next_page @projects, 'もっと見る', class: 'btn btn-lg btn-outline-secondary mt-4 width-250px', remote: true
+  - if request.path == myprojects_path
+    - unless @projects.last_page?
+      = link_to 'もっと見る', "#{myprojects_path}#{path_to_next_page(@projects)}", class: 'btn btn-lg btn-outline-secondary mt-4 width-250px', remote: true
+
+  - else
+    = link_to_next_page @projects, 'もっと見る', class: 'btn btn-lg btn-outline-secondary mt-4 width-250px', remote: true

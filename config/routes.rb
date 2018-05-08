@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   delete 'mypage', to: 'users#destroy'
 
   resources :projects, only: %i[index]
+  get 'myprojects', to: 'projects#index'
 end
