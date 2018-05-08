@@ -1,12 +1,22 @@
-= form_with model:project, local: true do |f|
-  .form-group
-    = f.label :name
-    = f.text_field :name, class: error_supported_field_class(instance: project, field: :name)
-    = render 'shared/form_errors', instance: project, field: :name
+.row
+  .col-12.col-md-10.mx-auto.mt-4
+    .card.border-middle-purple.text-purple
+      .card-header.h3.bg-light-purple.pl-md-5 = title
+      .card-body.p-md-5
+        .card-text.h5
+          = form_with model:project, local: true do |f|
+            .form-group
+              = f.label :name
+              = f.text_field :name, class: error_supported_field_class(instance: project, field: :name)
+              = render 'shared/form_errors', instance: project, field: :name
 
-  .form-group.mt-4
-    = f.label :summary
-    = f.text_area :summary, class: error_supported_field_class(instance: project, field: :summary), rows: '5'
-    = render 'shared/form_errors', instance: project, field: :summary
+            .form-group.mt-4
+              = f.label :summary
+              = f.text_area :summary, class: error_supported_field_class(instance: project, field: :summary), rows: '5'
+              = render 'shared/form_errors', instance: project, field: :summary
 
-  = f.submit '作成', class: 'btn btn-lg btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-4  width-170px'
+            - if project.new_record?
+              = f.submit '作成', class: 'btn btn-lg btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-4  width-170px'
+
+            -else
+              = f.submit '編集', class: 'btn btn-lg btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-4  width-170px'

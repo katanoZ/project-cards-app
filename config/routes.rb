@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   patch 'mypage', to: 'users#update'
   delete 'mypage', to: 'users#destroy'
 
-  resources :projects, only: %i[index new create]
+  resources :projects, only: %i[index new create edit update]
   get 'myprojects', to: 'projects#index'
 end
