@@ -16,7 +16,8 @@
               = render 'shared/form_errors', instance: project, field: :summary
 
             - if project.new_record?
-              = f.submit '作成', class: 'btn btn-lg btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-4  width-170px'
+              = f.submit '作成', class: 'btn btn-lg btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-4 width-200px'
 
             -else
-              = f.submit '編集', class: 'btn btn-lg btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-4  width-170px'
+              = f.submit '編集', class: 'btn btn-lg btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-4 width-200px'
+              = link_to '削除', project_path(project), method: :delete, data: { confirm: '本当に削除していいですか？' }, class: 'btn btn-lg btn-secondary bg-light-purple border-middle-purple text-middle-purple width-100px mt-4 ml-1 ml-sm-2'
