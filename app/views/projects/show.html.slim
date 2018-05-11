@@ -6,8 +6,8 @@
       = link_to 'ユーザを招待', '#', class: 'btn btn-outline-secondary border-middle-purple text-middle-purple'
 
 .row.mt-4.text-middle-purple.row-scroll-x.w-100.pb-2
-
-  - @project.columns.order(id: :asc).each do |column|
+  
+  - @project.columns.each do |column|
     = render 'projects/column', project: @project, column: column
 
   .col-2.col-scroll-x
