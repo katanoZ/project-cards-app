@@ -1,0 +1,13 @@
+.row
+  .col-12.col-md-10.mx-auto.mt-4
+    .card.border-middle-purple.text-purple
+      .card-header.h3.bg-light-purple.pl-md-5 = title
+      .card-body.p-md-5
+        .card-text.h5
+          = form_with model:[project, column], local: true do |f|
+            .form-group
+              = f.label :name
+              = f.text_field :name, class: error_supported_field_class(instance: column, field: :name)
+              = render 'shared/form_errors', instance: column, field: :name
+
+            = f.submit '作成', class: 'btn btn-lg btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-4 width-200px'

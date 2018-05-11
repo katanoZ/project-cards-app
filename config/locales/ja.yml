@@ -9,6 +9,8 @@ ja:
       project:
         name: プロジェクト名
         summary: 概要
+      column:
+        name: カラム名
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
