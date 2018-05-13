@@ -1,13 +1,11 @@
 class ProjectsController < ApplicationController
-  include ProjectsPagingModules
-
   before_action :set_project, only: %i[edit update destroy]
 
   def index
     if request.path == myprojects_path
-      set_myprojects
+      @projects = Project.get_myprojects(current_user, params[:page])
     else
-      set_projects
+      @projects = Project.get_projects(params[:page])
     end
   end
 
