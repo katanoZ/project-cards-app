@@ -8,8 +8,8 @@
 
         .col.text-center.text-truncate.px-0
           = link_to edit_project_column_path(project, column), class: 'card btn btn-lg btn-outline-secondary bg-white-purple text-middle-purple' do
-            div.card-body.text-truncate.p-0
-              div.card-text = column.name
+            .card-body.text-truncate.p-0
+              .card-text = column.name
 
         .col-2.pl-0.pr-2.text-right
           = link_to next_project_column_path(project, column), class: arrow_class(column, :next) do
