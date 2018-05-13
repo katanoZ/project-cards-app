@@ -6,10 +6,10 @@
           = link_to '#', class: 'text-middle-purple hover-middle-purple' do
             i.fas.fa-arrow-circle-left.fa-lg
         .col.text-center.overflow-scroll.px-0
-          a.link-unstyled href='#'
+          a.link-unstyled href=edit_project_column_path(project, column)
             .card.btn.btn-lg.btn-outline-secondary.bg-white-purple.text-middle-purple.w-100
               .card-body.overflow-scroll.p-0
-                .card-text = column.name
+              .card-text = column.name
 
         .col-2.text-right.pl-0.pr-2.my-auto
           = link_to '#', class: 'text-middle-purple hover-middle-purple' do

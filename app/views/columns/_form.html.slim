@@ -10,4 +10,9 @@
               = f.text_field :name, class: error_supported_field_class(instance: column, field: :name)
               = render 'shared/form_errors', instance: column, field: :name
 
-            = f.submit '作成', class: 'btn btn-lg btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-4 width-200px'
+            - if column.new_record?
+              = f.submit '作成', class: 'btn btn-lg btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-4 width-200px'
+
+            -else
+              = f.submit '編集', class: 'btn btn-lg btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-4 width-200px'
+              = link_to '削除', project_column_path(project), method: :delete, data: { confirm: '本当に削除していいですか？' }, class: 'btn btn-lg btn-secondary bg-light-purple border-middle-purple text-middle-purple width-100px mt-4 ml-1 ml-sm-2'

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   delete 'mypage', to: 'users#destroy'
 
   resources :projects do
-    resources :columns, only: %i[new create]
+    resources :columns, only: %i[new create edit update destroy]
   end
 
   get 'myprojects', to: 'projects#index'
