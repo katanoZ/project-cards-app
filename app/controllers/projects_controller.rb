@@ -3,9 +3,9 @@ class ProjectsController < ApplicationController
 
   def index
     if request.path == myprojects_path
-      @projects = Project.set_myprojects(current_user, params[:page])
+      @projects = Project.get_myprojects(current_user, params[:page])
     else
-      @projects = Project.set_projects(params[:page])
+      @projects = Project.get_projects(params[:page])
     end
   end
 
