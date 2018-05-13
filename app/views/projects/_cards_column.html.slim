@@ -1,0 +1,23 @@
+.col-8.col-sm-6.col-md-5.col-lg-4.col-xl-3.col-scroll-x
+  .card.border-middle-purple
+    .card-header.bg-white-purple
+      .row
+        .col-2.pl-2.pr-0.my-auto
+          = link_to '#', class: 'text-middle-purple hover-middle-purple' do
+            i.fas.fa-arrow-circle-left.fa-lg
+        .col.text-center.overflow-scroll.px-0
+          a.link-unstyled href='#'
+            .card.btn.btn-lg.btn-outline-secondary.bg-white-purple.text-middle-purple.w-100
+              .card-body.overflow-scroll.p-0
+                .card-text
+                  |カラム名
+
+        .col-2.text-right.pl-0.pr-2.my-auto
+          = link_to '#', class: 'text-middle-purple hover-middle-purple' do
+            i.fas.fa-arrow-circle-right.fa-lg
+
+    .card-body
+      - 4.times do
+        = render 'projects/card'
+
+      = link_to 'カードを追加', '#', class: 'btn btn-sm btn-outline-secondary border-middle-purple text-middle-purple my-2'

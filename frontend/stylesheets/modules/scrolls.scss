@@ -1,0 +1,26 @@
+.overflow-scroll {
+  overflow:scroll;
+}
+
+.row-scroll-x {
+  overflow-x: auto;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.row-scroll-x::-webkit-scrollbar {
+  height: 10px;/*バーの太さ*/
+}
+
+.row-scroll-x::-webkit-scrollbar-track {
+  background: rgba(248, 248, 255, 1);/*バーの背景色*/
+  border-radius: 10px;
+}
+
+.row-scroll-x::-webkit-scrollbar-thumb {
+  background: rgba(225, 225, 255, 1);/*バーの色*/
+}
+
+.col-scroll-x {
+  display:inline-block;
+}

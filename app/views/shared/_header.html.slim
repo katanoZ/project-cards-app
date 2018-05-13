@@ -10,13 +10,6 @@ header.header
           li.nav-item.mt-2.mt-sm-0.ml-0.ml-sm-2
             = link_to 'マイプロジェクト', myprojects_path, class: 'btn btn-outline-light'
 
-          - if logged_in_projects?
-            li.nav-item.mt-2.mt-sm-0.ml-0.ml-sm-2
-              .input-group
-                input.form-control type='text' placeholder='プロジェクト名' aria-describedby='button-addon'
-                  .input-group-append
-                    button#button-addon.btn.btn-outline-light type='button' 検索
-
         ul.navbar-nav.mt-3.mt-sm-0.ml-0.ml-sm-2
           - if logged_in?
             li.nav-item
@@ -25,7 +18,7 @@ header.header
                   | 0
             li.nav-item.mt-2.mt-sm-0.ml-0.ml-sm-1.ml-md-3
               = link_to mypage_path do
-                = image_tag current_user.image, class: 'icon-image'
+                = image_tag current_user.image, class: 'size35x35 rounded-circle'
           - else
             li.nav-item
               = link_to 'ログイン', login_path, class: 'btn btn-outline-light'

@@ -1,0 +1,16 @@
+.row
+  .col-md-7.col-lg-8.col-xl-9.overflow-scroll
+    .h4.text-middle-purple = @project.name
+  .col-md-5.col-lg-4.col-xl-3.text-right.pr-3
+      = link_to 'ログを見る', '#', class: 'btn btn-outline-secondary border-middle-purple text-middle-purple mr-2'
+      = link_to 'ユーザを招待', '#', class: 'btn btn-outline-secondary border-middle-purple text-middle-purple'
+
+.row.mt-4.text-middle-purple.row-scroll-x.w-100.pb-2
+
+  - 5.times do
+    = render 'projects/cards_column'
+
+  .col-2.col-scroll-x
+    .btn.btn-outline-secondary.border-middle-purple.bg-white-purple.text-middle-purple.mt-0
+      i.fas.fa-plus-square.fa-lg.mr-2
+      |カラムを追加

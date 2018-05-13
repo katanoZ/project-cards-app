@@ -1,7 +1,7 @@
 .row.align-items-center.mt-100px
 
   .col-md-4.ml-auto.text-center.col-lg-3
-    =image_tag @user.image, class: 'mypage-image img-fluid', id: 'js-mypage_image'
+    =image_tag @user.image, class: 'size255x255 rounded-circle img-fluid mb-4', id: 'js-mypage_image'
 
   .col-md-5.mr-auto.col-lg-4.ml-lg-5
     = render 'users/form', user: @user

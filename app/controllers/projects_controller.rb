@@ -11,6 +11,10 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def show
+    @project = Project.accessible(current_user).find(params[:id])
+  end
+
   def new
     @project = current_user.projects.build
   end
