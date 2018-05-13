@@ -1,18 +1,18 @@
 .col-8.col-sm-6.col-md-5.col-lg-4.col-xl-3.col-scroll-x
   .card.border-middle-purple
     .card-header.bg-white-purple
-      .row
-        .col-2.pl-2.pr-0.my-auto
-          = link_to '#', class: 'text-middle-purple hover-middle-purple' do
+      .row.align-items-center
+        .col-2.pl-2.pr-0
+          = link_to previous_project_column_path(project, column), class: arrow_class(column, :previous) do
             i.fas.fa-arrow-circle-left.fa-lg
-        .col.text-center.overflow-scroll.px-0
-          a.link-unstyled href=edit_project_column_path(project, column)
-            .card.btn.btn-lg.btn-outline-secondary.bg-white-purple.text-middle-purple.w-100
-              .card-body.overflow-scroll.p-0
+
+        .col.text-center.text-truncate.px-0
+          = link_to edit_project_column_path(project, column), class: 'card btn btn-lg btn-outline-secondary bg-white-purple text-middle-purple' do
+            .card-body.text-truncate.p-0
               .card-text = column.name
 
-        .col-2.text-right.pl-0.pr-2.my-auto
-          = link_to '#', class: 'text-middle-purple hover-middle-purple' do
+        .col-2.pl-0.pr-2.text-right
+          = link_to next_project_column_path(project, column), class: arrow_class(column, :next) do
             i.fas.fa-arrow-circle-right.fa-lg
 
     .card-body

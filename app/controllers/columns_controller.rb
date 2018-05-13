@@ -1,6 +1,6 @@
 class ColumnsController < ApplicationController
   before_action :set_project
-  before_action :set_column, only: %i[edit update destroy]
+  before_action :set_column, only: %i[edit update destroy previous next]
   def new
     @column = @project.columns.build
   end
@@ -33,6 +33,16 @@ class ColumnsController < ApplicationController
       flash.now[:alert] = 'カラムの削除に失敗しました。'
       render :edit
     end
+  end
+
+  def previous
+    @column.move_higher
+    redirect_to project_path(@project)
+  end
+
+  def next
+    @column.move_lower
+    redirect_to project_path(@project)
   end
 
   private

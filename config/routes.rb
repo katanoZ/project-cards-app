@@ -13,7 +13,10 @@ Rails.application.routes.draw do
   delete 'mypage', to: 'users#destroy'
 
   resources :projects do
-    resources :columns, only: %i[new create edit update destroy]
+    resources :columns, only: %i[new create edit update destroy] do
+      get 'previous', on: :member
+      get 'next', on: :member
+    end
   end
 
   get 'myprojects', to: 'projects#index'
