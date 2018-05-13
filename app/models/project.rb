@@ -1,5 +1,6 @@
 class Project < ApplicationRecord
   belongs_to :user
+  has_many :columns, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 140 }
   validates :summary, length: { maximum: 300 }
