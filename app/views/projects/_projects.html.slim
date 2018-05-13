@@ -20,7 +20,7 @@
         p.m-0
           = link_to 'プロジェクト詳細', project_path(project), class: 'btn btn-lg btn-outline-secondary border-middle-purple bg-light-purple text-purple mt-2'
 
-        - if project.user == current_user
+        - if project.host_user?(current_user)
           p.m-0
             = link_to 'プロジェクト編集', edit_project_path(project), class: 'btn btn-lg btn-outline-secondary border-middle-purple bg-light-purple text-purple mt-2'
 

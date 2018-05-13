@@ -13,4 +13,8 @@ class Project < ApplicationRecord
     #TODO: userが作ったプロジェクト or userがメンバーに入っているプロジェクトかどうか？を返す
     user == self.user
   end
+
+  def host_user?(user)
+    user == self.user
+  end
 end
