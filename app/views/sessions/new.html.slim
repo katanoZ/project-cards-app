@@ -3,14 +3,14 @@
     .card-header.text-light.bg-middle-purple.p-4
       h4.m-0 ログイン・新規登録
     .card-body.p-5
-      = link_to '/auth/facebook', class: 'btn btn-lg btn-block btn-secondary bg-light-purple border-middle-purple text-middle-purple mb-4' do
+      = link_to auth_path(:facebook), class: 'btn btn-lg btn-block btn-secondary bg-light-purple border-middle-purple text-middle-purple mb-4' do
         i.fab.fa-facebook.mr-2
         |Facebook
 
-      = link_to '/auth/twitter', class: 'btn btn-lg btn-block btn-secondary bg-light-purple border-middle-purple text-middle-purple mb-4' do
+      = link_to auth_path(:twitter), class: 'btn btn-lg btn-block btn-secondary bg-light-purple border-middle-purple text-middle-purple mb-4' do
         i.fab.fa-twitter.mr-2
         |Twitter
 
-      = link_to '/auth/github', class: 'btn btn-lg btn-block btn-secondary bg-light-purple border-middle-purple text-middle-purple' do
+      = link_to auth_path(:github), class: 'btn btn-lg btn-block btn-secondary bg-light-purple border-middle-purple text-middle-purple' do
         i.fab.fa-github.mr-2
         |Github
