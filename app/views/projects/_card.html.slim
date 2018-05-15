@@ -6,7 +6,7 @@
           i.far.fa-arrow-alt-circle-left.fa-lg
 
       .col.text-center.text-truncate.px-0
-        = link_to '#', class: 'link-unstyled' do
+        = link_to edit_project_column_card_path(project, column, card), class: 'link-unstyled' do
           .card.btn.btn-lg.btn-outline-secondary.bg-light-purple.text-middle-purple
             .card-body.text-truncate.p-0
               .card-text.h6 = card.name

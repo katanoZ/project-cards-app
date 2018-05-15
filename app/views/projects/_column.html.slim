@@ -17,6 +17,6 @@
 
     .card-body
       - column.cards.each do |card|
-        = render 'projects/card', card: card
+        = render 'projects/card', project: project, column: column, card: card
 
       = link_to 'カードを追加', new_project_column_card_path(project, column), class: 'btn btn-sm btn-outline-secondary border-middle-purple text-middle-purple my-2'

@@ -1,6 +1,8 @@
 class CardsController < ApplicationController
-  before_action :set_project, only: %i[new create]
-  before_action :set_column, only: %i[new create]
+  before_action :set_myproject, only: %i[new create]
+  before_action :set_project, only: %i[edit update destroy]
+  before_action :set_column
+  before_action :set_card, only: %i[edit update destroy]
 
   def new
     @card = @column.cards.build
@@ -19,17 +21,45 @@ class CardsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @card.update(card_params)
+      redirect_to project_path(@project), notice: 'カードを更新しました'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    if @card.destroy
+      redirect_to project_path(@project), notice: 'カードを削除しました'
+    else
+      flash.now[:alert] = 'カードの削除に失敗しました。'
+      render :edit
+    end
+  end
+
   private
 
   def card_params
     params.require(:card).permit(:name, :due_date, :assignee_id)
   end
 
-  def set_project
+  def set_myproject
     @project = current_user.projects.find(params[:project_id])
+  end
+
+  def set_project
+    @project = Project.accessible(current_user).find(params[:project_id])
   end
 
   def set_column
     @column = @project.columns.find(params[:column_id])
+  end
+
+  def set_card
+    @card = @column.cards.find(params[:id])
   end
 end
