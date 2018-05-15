@@ -1,6 +1,7 @@
 class ColumnsController < ApplicationController
   before_action :set_project
   before_action :set_column, only: %i[edit update destroy previous next]
+
   def new
     @column = @project.columns.build
   end

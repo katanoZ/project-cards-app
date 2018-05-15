@@ -2,6 +2,10 @@ class User < ApplicationRecord
   mount_uploader :image, MypageImageUploader
 
   has_many :projects, dependent: :destroy
+  has_many :assigned_cards, class_name: 'Card',
+                            foreign_key: :assignee_id,
+                            inverse_of: :assignee,
+                            dependent: :destroy
 
   attr_accessor :message
 
