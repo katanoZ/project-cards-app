@@ -5,6 +5,8 @@ class Card < ApplicationRecord
   belongs_to :project
   belongs_to :column
 
+  acts_as_list scope: %i[project_id column_id]
+
   validates :name, presence: true,
                    uniqueness: { scope: :project },
                    length: { maximum: 40 }

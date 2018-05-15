@@ -2,7 +2,7 @@
   .card-body.overflow-scroll.pt-3.pb-2
     .row
       .col-2.px-0.my-auto
-        = link_to '#', class: 'text-middle-purple hover-middle-purple' do
+        = link_to previous_project_column_card_path(project, column, card), class: arrow_class(column, :previous) do
           i.far.fa-arrow-alt-circle-left.fa-lg
 
       .col.text-center.text-truncate.px-0
@@ -12,7 +12,7 @@
               .card-text.h6 = card.name
 
       .col-2.text-right.px-0.my-auto
-        = link_to '#', class: 'text-middle-purple hover-middle-purple' do
+        = link_to next_project_column_card_path(project, column, card), class: arrow_class(column, :next) do
           i.far.fa-arrow-alt-circle-right.fa-lg
 
     .row.mt-2
@@ -21,4 +21,5 @@
           span.mr-2.align-bottom 期限:#{l card.due_date, format: :mmdd}
         - else
           span.mr-1.align-bottom 期限: 設定なし
+          
         = image_tag card.assignee.image, class: 'size35x35 rounded-circle'
