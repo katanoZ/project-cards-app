@@ -48,6 +48,7 @@ class ProjectsController < ApplicationController
   end
 
   def invite
+    @users = User.search(params[:keyword]) if params[:keyword].present?
   end
 
   private

@@ -14,4 +14,12 @@ module FormHelper
       'btn btn-lg btn-block btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-2 mt-lg-4'
     end
   end
+
+  def user_search_message(keyword, users)
+    if keyword.blank?
+      'ユーザ名を入力してください'
+    elsif users.blank?
+      '該当するユーザ名がありません'
+    end
+  end
 end
