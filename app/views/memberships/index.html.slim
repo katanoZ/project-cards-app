@@ -1,0 +1,18 @@
+.row
+  .col-12.col-md-10.mx-auto.mt-4
+    .card.border-middle-purple.text-purple
+      .card-header.h3.bg-light-purple.pl-md-5 お知らせ
+      ul.list-group.list-group-flush.text-middle-purple.h4
+
+        - 5.times do
+          li.list-group-item.pl-md-5.pr-md-5
+            .row.align-items-center.my-0.my-md-1
+              .col-auto.pr-0
+                = image_tag current_user.image, class: 'size35x35 rounded-circle'
+              .col
+                |#{current_user.name}さんが#{current_user.projects.first.name}プロジェクトに招待しています
+              .col-auto
+                = link_to '参加', '#', class: 'btn btn-outline-secondary bg-light-purple text-middle-purple border-middle-purple'
+
+      .card-footer.text-center.bg-white
+        = link_to 'もっと見る', '#', class: 'btn btn-lg btn-outline-secondary width-250px'
