@@ -19,6 +19,6 @@
               .col-12.col-md-6
                 .form-group
                   = f.label :assignee_id
-                  = f.collection_select :assignee_id, User.all, :id, :name, { selected: project.user.id }, class: 'form-control form-control-lg'
+                  = f.collection_select :assignee_id, User.all, :id, :name, { selected: card.assignee.id }, class: 'form-control form-control-lg'
 
             = f.submit '作成', class: 'btn btn-lg btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-4 width-200px'
