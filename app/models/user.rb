@@ -6,6 +6,8 @@ class User < ApplicationRecord
                             foreign_key: :assignee_id,
                             inverse_of: :assignee,
                             dependent: :destroy
+  has_many :memberships, dependent: :destroy
+  has_many :member_projects, through: :memberships, source: :project
 
   attr_accessor :message
 
