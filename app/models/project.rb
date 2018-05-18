@@ -42,4 +42,12 @@ class Project < ApplicationRecord
   def host_user?(user)
     user == self.user
   end
+
+  def member_user?(user)
+    members.exists?(id: user.id)
+  end
+
+  def invite!(user)
+    Membership.create!(project: self, user: user)
+  end
 end

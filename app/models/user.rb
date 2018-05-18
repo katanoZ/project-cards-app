@@ -29,6 +29,10 @@ class User < ApplicationRecord
     where('name LIKE ?', "%#{sanitize_sql_like(keyword)}%")
   end
 
+  def notifications_count
+    Membership.where(user: self, join: false).count
+  end
+
   after_find do
     @message = 'ログインしました'
   end
