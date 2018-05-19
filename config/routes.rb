@@ -29,5 +29,5 @@ Rails.application.routes.draw do
   get 'myprojects', to: 'projects#index'
 
   get 'notifications', to: 'memberships#index'
-  resources :memberships, only: %i[create]
+  resources :memberships, only: %i[create update]
 end

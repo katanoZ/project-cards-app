@@ -5,4 +5,4 @@
         = image_tag membership.project_user.image, class: 'size35x35 rounded-circle'
       .col #{membership.project_user.name}さんが#{membership.project.name}プロジェクトに招待しています
       .col-auto
-        = link_to '参加', '#', class: 'btn btn-outline-secondary bg-light-purple text-middle-purple border-middle-purple'
+        = link_to '参加', membership_path(membership),method: :patch, class: 'btn btn-outline-secondary bg-light-purple text-middle-purple border-middle-purple'

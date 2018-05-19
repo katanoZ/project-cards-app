@@ -10,6 +10,11 @@ class Membership < ApplicationRecord
 
   paginates_per 5
 
+  def join!
+    raise '既にプロジェクトに参加しています' if join
+    update!(join: true)
+  end
+
   private
 
   def excludes_host_user
