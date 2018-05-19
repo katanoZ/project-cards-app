@@ -11,6 +11,10 @@ ja:
         summary: 概要
       column:
         name: カラム名
+      card:
+        name: カード名
+        due_date: 期限
+        assignee_id: 担当者
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
@@ -212,5 +216,7 @@ ja:
       default: "%Y/%m/%d %H:%M:%S"
       long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       short: "%y/%m/%d %H:%M"
-      mmdd: "%_m月%_d日"
     pm: 午後
+  date:
+    formats:
+      mmdd: "%_m月%_d日"

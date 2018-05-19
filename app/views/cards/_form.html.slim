@@ -1,0 +1,29 @@
+.row
+  .col-12.col-md-10.mx-auto.mt-4
+    .card.border-middle-purple.text-purple
+      .card-header.h3.bg-light-purple.pl-md-5 = title
+      .card-body.p-md-5
+        .card-text.h5
+          = form_with model:[project, column, card], local: true do |f|
+            .form-group
+              = f.label :name
+              = f.text_field :name, class: error_supported_field_class(instance: card, field: :name)
+              = render 'shared/form_errors', instance: card, field: :name
+
+            .row
+              .col-12.col-md-6
+                .form-group
+                  = f.label :due_date
+                  = f.date_field :due_date, type: 'date', class: error_supported_field_class(instance: card, field: :due_date), min: Date.today , max: Date.today.next_year, placeholder: 'yyyy-mm-dd（今日から1年後まで）', pattern: '^(20[0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$'
+                  = render 'shared/form_errors', instance: card, field: :due_date
+              .col-12.col-md-6
+                .form-group
+                  = f.label :assignee_id
+                  = f.collection_select :assignee_id, User.all, :id, :name, { selected: card.assignee.id }, class: 'form-control form-control-lg'
+
+            - if card.new_record?
+              = f.submit '作成', class: 'btn btn-lg btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-4 width-200px'
+
+            -else
+              = f.submit '編集', class: 'btn btn-lg btn-secondary bg-light-purple border-middle-purple text-middle-purple mt-4 width-200px'
+              = link_to '削除', project_column_card_path(project, column, card), method: :delete, data: { confirm: '本当に削除していいですか？' }, class: 'btn btn-lg btn-secondary bg-light-purple border-middle-purple text-middle-purple width-100px mt-4 ml-1 ml-sm-2'

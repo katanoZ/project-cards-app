@@ -1,6 +1,7 @@
 class Project < ApplicationRecord
   belongs_to :user
   has_many :columns, -> { order(position: :asc) }, dependent: :destroy
+  has_many :cards, dependent: :destroy
 
   COUNT_FOR_FIRST_PAGE = 8
   COUNT_FOR_OTHER_PAGE = 9

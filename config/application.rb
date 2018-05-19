@@ -18,5 +18,7 @@ module QuasiCase
     config.active_record.default_timezone = :local
 
     config.rack_dev_mark.enable = !Rails.env.production?
+
+    config.autoload_paths += Dir["#{config.root}/app/validators"]
   end
 end
