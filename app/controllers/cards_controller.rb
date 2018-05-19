@@ -1,6 +1,5 @@
 class CardsController < ApplicationController
-  before_action :set_host_project, only: %i[new create]
-  before_action :set_myproject, only: %i[edit update destroy previous next]
+  before_action :set_project
   before_action :set_column
   before_action :set_card, only: %i[edit update destroy previous next]
 
@@ -58,11 +57,7 @@ class CardsController < ApplicationController
     params.require(:card).permit(:name, :due_date, :assignee_id)
   end
 
-  def set_host_project
-    @project = current_user.projects.find(params[:project_id])
-  end
-
-  def set_myproject
+  def set_project
     @project = Project.accessible(current_user).find(params[:project_id])
   end
 
