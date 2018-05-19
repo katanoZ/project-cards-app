@@ -1,8 +1,8 @@
 class CardsController < ApplicationController
   before_action :set_myproject, only: %i[new create]
-  before_action :set_project, only: %i[edit update destroy]
+  before_action :set_project, only: %i[edit update destroy previous next]
   before_action :set_column
-  before_action :set_card, only: %i[edit update destroy]
+  before_action :set_card, only: %i[edit update destroy previous next]
 
   def new
     @card = @column.cards.build
@@ -39,6 +39,18 @@ class CardsController < ApplicationController
       flash.now[:alert] = 'カードの削除に失敗しました。'
       render :edit
     end
+  end
+
+  def previous
+    @card.column = @column.higher_item
+    @card.save
+    redirect_to project_path(@project)
+  end
+
+  def next
+    @card.column = @column.lower_item
+    @card.save
+    redirect_to project_path(@project)
   end
 
   private

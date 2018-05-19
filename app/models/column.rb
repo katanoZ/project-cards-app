@@ -1,6 +1,6 @@
 class Column < ApplicationRecord
   belongs_to :project
-  has_many :cards, dependent: :destroy
+  has_many :cards, -> { order(position: :desc) }, dependent: :destroy
 
   acts_as_list scope: :project
 
