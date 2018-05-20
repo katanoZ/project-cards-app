@@ -24,6 +24,8 @@ Rails.application.routes.draw do
         get 'next', on: :member
       end
     end
+
+    resources :logs, only: %i[index]
   end
 
   get 'myprojects', to: 'projects#index'
