@@ -4,6 +4,7 @@ class Project < ApplicationRecord
   has_many :cards, dependent: :destroy
   has_many :memberships, dependent: :destroy
   has_many :members, through: :memberships, source: :user
+  has_many :logs, dependent: :destroy
 
   COUNT_FOR_FIRST_PAGE = 8
   COUNT_FOR_OTHER_PAGE = 9
