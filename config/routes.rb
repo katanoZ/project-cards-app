@@ -27,4 +27,6 @@ Rails.application.routes.draw do
   end
 
   get 'myprojects', to: 'projects#index'
+
+  get 'notifications', to: 'memberships#index'
 end
