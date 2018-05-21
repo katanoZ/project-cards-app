@@ -6,7 +6,6 @@ class CardsController < ApplicationController
 
   def new
     @card = @column.cards.build
-    @card.project = @project
     @card.assignee = current_user
   end
 
