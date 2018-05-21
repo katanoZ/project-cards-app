@@ -1,0 +1,14 @@
+.row
+  .col-12.col-md-10.mx-auto.mt-4
+    .card.border-middle-purple.text-purple
+      .card-header.h3.bg-light-purple.pl-md-5 ユーザを招待
+      .card-body.p-md-5
+        .card-text.h5
+          = form_with url: '#', method: :get, local: true do |f|
+          
+            p.mb-2 ユーザを検索
+            .row
+              .col-11.col-sm-7.pr-0
+                = f.text_field :keyword, class: 'form-control form-control-lg', placeholder: 'ユーザ名'
+              .col-auto.mt-2.mt-sm-0.pl-3.pl-sm-2
+                = f.submit '検索', class: 'btn btn-lg btn-secondary bg-light-purple border-middle-purple text-middle-purple width-150px'

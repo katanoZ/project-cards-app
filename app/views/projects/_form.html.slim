@@ -4,7 +4,7 @@
       .card-header.h3.bg-light-purple.pl-md-5 = title
       .card-body.p-md-5
         .card-text.h5
-          = form_with model:project, local: true do |f|
+          = form_with model: project, local: true do |f|
             .form-group
               = f.label :name
               = f.text_field :name, class: error_supported_field_class(instance: project, field: :name)

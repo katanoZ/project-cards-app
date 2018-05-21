@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: %i[edit update destroy]
+  before_action :set_project, only: %i[edit update destroy invite]
 
   def index
     if request.path == myprojects_path
@@ -45,6 +45,9 @@ class ProjectsController < ApplicationController
       flash.now[:alert] = 'プロジェクトの削除に失敗しました。'
       render :edit
     end
+  end
+
+  def invite
   end
 
   private
