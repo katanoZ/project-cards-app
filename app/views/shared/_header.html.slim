@@ -14,7 +14,7 @@ header.header
           - if logged_in?
             li.nav-item
               h5.my-0.my-sm-1
-                = link_to '0', notifications_path, class: 'badge badge-light'
+                = link_to current_user.notifications_count, notifications_path, class: 'badge badge-light'
 
             li.nav-item.mt-2.mt-sm-0.ml-0.ml-sm-1.ml-md-3
               = link_to mypage_path do

@@ -22,7 +22,12 @@
               .row.mt-4.align-items-center
                 .col-auto = image_tag user.image, class: 'size35x35 rounded-circle'
                 .col-5.col-md-4.col-lg-3.px-0.h4.mb-0 = user.name
-                - if user == current_user
-                  .col-auto.width-120px.text-middle-purple.text-center.ml-1.mt-1.mt-sm-0 自分
-                - else
-                  = link_to '招待', '#', class: 'col-auto btn btn-lg btn-outline-secondary border-middle-purple text-middle-purple width-120px ml-1 mt-1 mt-sm-0'
+
+                - if @project.host_user?(user)
+                  .col-auto.width-120px.text-middle-purple.text-center.font-weight-bold.ml-1.mt-1.mt-sm-0 ホスト
+
+                - elsif @project.member_user?(user)
+                  .col-auto.width-120px.text-middle-purple.text-center.ml-1.mt-1.mt-sm-0 招待済み
+
+                -else
+                  = link_to '招待', memberships_path(project_id: @project.id, user_id: user.id), method: :post, class: 'col-auto btn btn-lg btn-outline-secondary border-middle-purple text-middle-purple width-120px ml-1 mt-1 mt-sm-0'

@@ -2,6 +2,8 @@ class Project < ApplicationRecord
   belongs_to :user
   has_many :columns, -> { order(position: :asc) }, dependent: :destroy
   has_many :cards, dependent: :destroy
+  has_many :memberships, dependent: :destroy
+  has_many :members, through: :memberships, source: :user
 
   COUNT_FOR_FIRST_PAGE = 8
   COUNT_FOR_OTHER_PAGE = 9
@@ -39,5 +41,13 @@ class Project < ApplicationRecord
 
   def host_user?(user)
     user == self.user
+  end
+
+  def member_user?(user)
+    members.exists?(id: user.id)
+  end
+
+  def invite!(user)
+    Membership.create!(project: self, user: user)
   end
 end

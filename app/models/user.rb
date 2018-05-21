@@ -6,6 +6,8 @@ class User < ApplicationRecord
                             foreign_key: :assignee_id,
                             inverse_of: :assignee,
                             dependent: :destroy
+  has_many :memberships, dependent: :destroy
+  has_many :member_projects, through: :memberships, source: :project
 
   attr_accessor :message
 
@@ -25,6 +27,10 @@ class User < ApplicationRecord
 
   scope :search, ->(keyword) do
     where('name LIKE ?', "%#{sanitize_sql_like(keyword)}%")
+  end
+
+  def notifications_count
+    Membership.where(user: self, join: false).count
   end
 
   after_find do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180515023307) do
+ActiveRecord::Schema.define(version: 20180518014342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,17 @@ ActiveRecord::Schema.define(version: 20180515023307) do
     t.index ["project_id"], name: "index_columns_on_project_id"
   end
 
+  create_table "memberships", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.bigint "user_id", null: false
+    t.boolean "join", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id", "user_id"], name: "index_memberships_on_project_id_and_user_id", unique: true
+    t.index ["project_id"], name: "index_memberships_on_project_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "name", null: false
     t.text "summary"
@@ -64,5 +75,7 @@ ActiveRecord::Schema.define(version: 20180515023307) do
   add_foreign_key "cards", "projects"
   add_foreign_key "cards", "users", column: "assignee_id"
   add_foreign_key "columns", "projects"
+  add_foreign_key "memberships", "projects", on_delete: :cascade
+  add_foreign_key "memberships", "users", on_delete: :cascade
   add_foreign_key "projects", "users"
 end

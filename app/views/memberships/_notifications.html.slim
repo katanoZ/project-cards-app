@@ -1,0 +1,8 @@
+- memberships.each do |membership|
+  li.list-group-item.pl-md-5.pr-md-5
+    .row.align-items-center.my-0.my-md-1
+      .col-auto.pr-0
+        = image_tag membership.project_user.image, class: 'size35x35 rounded-circle'
+      .col #{membership.project_user.name}さんが#{membership.project.name}プロジェクトに招待しています
+      .col-auto
+        = link_to '参加', '#', class: 'btn btn-outline-secondary bg-light-purple text-middle-purple border-middle-purple'
