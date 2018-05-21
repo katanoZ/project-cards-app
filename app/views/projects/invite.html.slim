@@ -4,11 +4,25 @@
       .card-header.h3.bg-light-purple.pl-md-5 ユーザを招待
       .card-body.p-md-5
         .card-text.h5
-          = form_with url: '#', method: :get, local: true do |f|
-          
+          = form_with url: invite_project_path(@project), method: :get, local: true do |f|
+
             p.mb-2 ユーザを検索
             .row
               .col-11.col-sm-7.pr-0
-                = f.text_field :keyword, class: 'form-control form-control-lg', placeholder: 'ユーザ名'
-              .col-auto.mt-2.mt-sm-0.pl-3.pl-sm-2
-                = f.submit '検索', class: 'btn btn-lg btn-secondary bg-light-purple border-middle-purple text-middle-purple width-150px'
+                = f.text_field :keyword, class: 'form-control form-control-lg', placeholder: 'ユーザ名（一部でも可）', value: params[:keyword].presence
+
+                - unless params[:keyword].nil?
+                  .mt-2.text-secondary-purple = user_search_message(params[:keyword], @users)
+
+              .col-auto.pl-3.pl-sm-2
+                = f.submit '検索', class: 'btn btn-lg btn-secondary bg-light-purple border-middle-purple text-middle-purple width-150px mb-5'
+
+          - if @users
+            - @users.each do |user|
+              .row.mt-4.align-items-center
+                .col-auto = image_tag user.image, class: 'size35x35 rounded-circle'
+                .col-5.col-md-4.col-lg-3.px-0.h4.mb-0 = user.name
+                - if user == current_user
+                  .col-auto.width-120px.text-middle-purple.text-center.ml-1.mt-1.mt-sm-0 自分
+                - else
+                  = link_to '招待', '#', class: 'col-auto btn btn-lg btn-outline-secondary border-middle-purple text-middle-purple width-120px ml-1 mt-1 mt-sm-0'
