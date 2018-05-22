@@ -4,4 +4,4 @@
       = link_to 'もっと見る', "#{myprojects_path}?page=#{@projects.next_page}", class: 'btn btn-lg btn-outline-secondary mt-4 width-250px', remote: true
 
   - else
-    = link_to_next_page @projects, 'もっと見る', class: 'btn btn-lg btn-outline-secondary mt-4 width-250px', remote: true
+    = link_to_next_page @projects, 'もっと見る', class: 'btn btn-lg btn-outline-secondary border-middle-purple text-middle-purple mt-4 width-250px', remote: true
