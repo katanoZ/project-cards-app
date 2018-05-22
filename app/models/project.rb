@@ -4,6 +4,7 @@ class Project < ApplicationRecord
   has_many :cards, dependent: :destroy
   has_many :memberships, dependent: :destroy
   has_many :members, through: :memberships, source: :user
+  has_many :logs, dependent: :destroy
 
   COUNT_FOR_FIRST_PAGE = 8
   COUNT_FOR_OTHER_PAGE = 9
@@ -13,10 +14,10 @@ class Project < ApplicationRecord
 
   def self.get_myprojects(user, page)
     if page
-      user.projects.order(id: :desc).page(page).per(COUNT_FOR_OTHER_PAGE)
-          .padding(COUNT_FOR_FIRST_PAGE - COUNT_FOR_OTHER_PAGE)
+      accessible(user).order(id: :desc).page(page).per(COUNT_FOR_OTHER_PAGE)
+                      .padding(COUNT_FOR_FIRST_PAGE - COUNT_FOR_OTHER_PAGE)
     else
-      user.projects.order(id: :desc).page(page).per(COUNT_FOR_FIRST_PAGE)
+      accessible(user).order(id: :desc).page(page).per(COUNT_FOR_FIRST_PAGE)
     end
   end
 
@@ -30,13 +31,13 @@ class Project < ApplicationRecord
   end
 
   scope :accessible, ->(user) do
-    #TODO: userが作ったプロジェクト or userがメンバーに入っているプロジェクト を返す
-    user.projects
+    relation = Project.left_joins(:memberships)
+    relation.merge(Membership.where(user: user, join: true))
+            .or(relation.where(user: user))
   end
 
   def accessible?(user)
-    #TODO: userが作ったプロジェクト or userがメンバーに入っているプロジェクトかどうか？を返す
-    user == self.user
+    Project.accessible(user).exists?(id)
   end
 
   def host_user?(user)

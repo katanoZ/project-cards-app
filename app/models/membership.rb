@@ -7,8 +7,15 @@ class Membership < ApplicationRecord
   validates :project_id, uniqueness: { scope: :user_id }
 
   before_save :excludes_host_user
+  after_create MembershipLogsCallbacks.new
+  after_update MembershipLogsCallbacks.new
 
   paginates_per 5
+
+  def join!
+    raise '既にプロジェクトに参加しています' if join
+    update!(join: true)
+  end
 
   private
 

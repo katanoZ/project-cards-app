@@ -1,0 +1,20 @@
+.row
+  .col-12.col-md-10.mx-auto.mt-4
+    .card.border-middle-purple.text-purple
+      .card-header.h3.bg-light-purple.pl-md-5 #{@project.name}プロジェクト ログ
+
+      - if @logs.present?
+        ul.list-group.list-group-flush.text-middle-purple.h4
+          #js-logs
+            = render 'logs/logs', logs: @logs
+
+        #js-logs_view_more
+          = render 'logs/logs_view_more', logs: @logs
+
+      - else
+        .card-body.pl-md-5
+          .card-text.h4 ログはありません
+
+.row
+  .col.text-center
+    = link_to 'プロジェクトに戻る', project_path(@project), class: 'btn btn-outline-secondary border-middle-purple text-middle-purple mt-4'
