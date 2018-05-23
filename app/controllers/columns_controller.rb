@@ -1,6 +1,7 @@
 class ColumnsController < ApplicationController
   before_action :set_project
   before_action :set_column, only: %i[edit update destroy previous next]
+  before_action :set_operator, only: %i[update destroy]
 
   def new
     @column = @project.columns.build
@@ -8,6 +9,7 @@ class ColumnsController < ApplicationController
 
   def create
     @column = @project.columns.build(column_params)
+    @column.operator = current_user
 
     if @column.save
       redirect_to project_path(@project), notice: 'カラムを作成しました'
@@ -58,5 +60,9 @@ class ColumnsController < ApplicationController
 
   def set_column
     @column = @project.columns.find(params[:id])
+  end
+
+  def set_operator
+    @column.operator = current_user
   end
 end

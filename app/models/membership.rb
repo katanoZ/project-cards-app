@@ -7,6 +7,8 @@ class Membership < ApplicationRecord
   validates :project_id, uniqueness: { scope: :user_id }
 
   before_save :excludes_host_user
+  after_create MembershipLogsCallbacks.new
+  after_update MembershipLogsCallbacks.new
 
   paginates_per 5
 
