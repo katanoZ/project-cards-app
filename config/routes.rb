@@ -24,10 +24,12 @@ Rails.application.routes.draw do
         get 'next', on: :member
       end
     end
+
+    resources :logs, only: %i[index]
   end
 
   get 'myprojects', to: 'projects#index'
 
   get 'notifications', to: 'memberships#index'
-  resources :memberships, only: %i[create]
+  resources :memberships, only: %i[create update]
 end

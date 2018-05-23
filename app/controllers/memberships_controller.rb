@@ -14,6 +14,12 @@ class MembershipsController < ApplicationController
     redirect_to project_path(@project), notice: "#{user.name}さんをプロジェクトに招待しました"
   end
 
+  def update
+    membership = current_user.memberships.find(params[:id])
+    membership.join!
+    redirect_to project_path(membership.project), notice: 'プロジェクトに参加しました'
+  end
+
   private
 
   def set_project

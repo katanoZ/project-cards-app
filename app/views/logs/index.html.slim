@@ -1,0 +1,24 @@
+.row
+  .col-12.col-md-10.mx-auto.mt-4
+    .card.border-middle-purple.text-purple
+      .card-header.h3.bg-light-purple.pl-md-5 ログ
+
+      ul.list-group.list-group-flush.text-middle-purple.h4
+        li.list-group-item.pl-md-5.pr-md-5.py-3
+          .row.my-0.my-md-1
+            .col #{current_user.name}さんがカード「カード名」を作成しました。
+        li.list-group-item.pl-md-5.pr-md-5.py-3
+          .row.my-0.my-md-1
+            .col #{current_user.name}さんが○○○○○プロジェクトに招待しています。
+        li.list-group-item.pl-md-5.pr-md-5.py-3
+          .row.my-0.my-md-1
+            .col #{current_user.name}さんが○○○○○プロジェクトに招待しています。
+        li.list-group-item.pl-md-5.pr-md-5.py-3
+          .row.my-0.my-md-1
+            .col #{current_user.name}さんが○○○○○プロジェクトに招待しています。
+        li.list-group-item.pl-md-5.pr-md-5.py-3
+          .row.my-0.my-md-1
+            .col #{current_user.name}さんが○○○○○プロジェクトに招待しています。
+
+      .card-footer.text-center.bg-white
+        = link_to 'もっと見る','#', class: 'btn btn-lg btn-outline-secondary width-250px'
