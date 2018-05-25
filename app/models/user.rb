@@ -13,6 +13,8 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
+  before_destroy :handles_projects, prepend: true
+
   def self.find_or_create_from_auth(auth)
     provider = auth[:provider]
     uid = auth[:uid]
@@ -41,17 +43,15 @@ class User < ApplicationRecord
     @message = 'アカウント登録しました'
   end
 
-  def destroy
-    # ホストが退会するプロジェクトに参加者がいる場合は、ホストを交代する
+  private
+
+  # ホストが退会するプロジェクトに参加者がいる場合は、ホストを交代する
+  def handles_projects
     target_projects = projects.having_participants
     if target_projects.present?
       manages_accounts_in(target_projects)
     end
-
-    super
   end
-
-  private
 
   def manages_accounts_in(projects)
     projects.each do |project|
