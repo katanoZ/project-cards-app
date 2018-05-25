@@ -9,4 +9,10 @@ class MembershipLogsCallbacks
     content = "#{membership.user.name}さんがこのプロジェクトに参加しました"
     Log.create!(content: content, project: membership.project)
   end
+
+  def after_destroy(membership)
+    return unless membership.join
+    content = "メンバーの#{membership.user.name}さんがプロジェクトから退会しました"
+    Log.create!(content: content, project: membership.project)
+  end
 end

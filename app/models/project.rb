@@ -30,6 +30,10 @@ class Project < ApplicationRecord
     end
   end
 
+  scope :having_participants, -> do
+    joins(:memberships).where(memberships: { join: true }).distinct
+  end
+
   scope :accessible, ->(user) do
     relation = Project.left_joins(:memberships)
     relation.merge(Membership.where(user: user, join: true))
@@ -50,5 +54,13 @@ class Project < ApplicationRecord
 
   def invite!(user)
     Membership.create!(project: self, user: user)
+  end
+
+  def change_host
+    oldest_membersip = memberships.where(join: true).order(updated_at: :asc).first
+    oldest_member = oldest_membersip.user
+
+    oldest_membersip.delete
+    update(user: oldest_member)
   end
 end
