@@ -35,9 +35,10 @@ class Project < ApplicationRecord
   end
 
   scope :accessible, ->(user) do
-    relation = Project.left_joins(:memberships)
-    relation.merge(Membership.where(user: user, join: true))
-            .or(relation.where(user: user))
+    joined_table = Project.left_joins(:memberships)
+    joined_table.merge(Membership.where(user: user, join: true))
+            .or(joined_table.where(user: user))
+            .distinct
   end
 
   def accessible?(user)
