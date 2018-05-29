@@ -26,4 +26,35 @@ RSpec.describe Membership, type: :model do
       expect(membership2).to be_valid
     end
   end
+
+  describe 'join!' do
+    it 'joinがfalseの場合は実行するとtrueになること' do
+      membership = FactoryBot.create(:membership)
+      membership.join!
+      expect(membership.join).to eq true
+    end
+
+    it 'joinがtrueの場合は実行するとtrueのままであること' do
+      membership = FactoryBot.create(:membership, join: true)
+      membership.join!
+      expect(membership.join).to eq true
+    end
+  end
+
+  describe 'excludes_host_user' do
+    before do
+      @project = FactoryBot.create(:project)
+    end
+
+    it 'ユーザにprojectのホストユーザ以外が指定されると保存が成功すること' do
+      user = FactoryBot.create(:user)
+      membership = FactoryBot.build(:membership, project: @project, user: user)
+      expect(membership.save).to eq true
+    end
+
+    it 'ユーザにprojectのホストユーザが指定されると保存が失敗すること' do
+      membership = FactoryBot.build(:membership, project: @project, user: @project.user)
+      expect(membership.save).to eq false
+    end
+  end
 end

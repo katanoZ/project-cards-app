@@ -76,4 +76,66 @@ RSpec.describe Card, type: :model do
       expect(card.errors[:due_date]).to include('は今日から1年後までの範囲で入力してください')
     end
   end
+
+  describe 'self.create_due_date_notification_logs!' do
+    context 'カードの種類' do
+      it '今日が期限のカードがある場合、ログの種類と数が正しいこと' do
+        FactoryBot.create_list(:card, 2, due_date: Date.today)
+        expect { Card.create_due_date_notification_logs! }.to change(Log.where('content LIKE(?)', '%本日が%'), :count).by(2)
+      end
+
+      it '昨日が期限のカードがある場合、ログの種類と数が正しいこと' do
+        cards = FactoryBot.build_list(:card, 3, due_date: Date.yesterday)
+        cards.map { |c| c.save(validate: false) }
+        expect { Card.create_due_date_notification_logs! }.to change(Log.where('content LIKE(?)', '%1日過ぎました%'), :count).by(3)
+      end
+
+      it '10日前が期限のカードがある場合、ログの種類と数が正しいこと' do
+        cards = FactoryBot.build_list(:card, 4, due_date: Date.today - 10)
+        cards.map { |c| c.save(validate: false) }
+        expect { Card.create_due_date_notification_logs! }.to change(Log.where('content LIKE(?)', '%10日過ぎました%'), :count).by(4)
+      end
+
+      it '明日が期限のカードがある場合、締切期限のログが作成されないこと' do
+        FactoryBot.create_list(:card, 5, due_date: Date.tomorrow)
+        expect { Card.create_due_date_notification_logs! }.to change(Log.where('content LIKE(?)', '%締切期限%'), :count).by(0)
+      end
+
+      it '10日後が期限のカードがある場合、締切期限のログが作成されないこと' do
+        FactoryBot.create_list(:card, 6, due_date: Date.today + 10)
+        expect { Card.create_due_date_notification_logs! }.to change(Log.where('content LIKE(?)', '%締切期限%'), :count).by(0)
+      end
+
+      it '締切期限のないカードがある場合、締切期限のログが作成されないこと' do
+        FactoryBot.create_list(:card, 7, due_date: nil)
+        expect { Card.create_due_date_notification_logs! }.to change(Log.where('content LIKE(?)', '%締切期限%'), :count).by(0)
+      end
+    end
+
+    context 'カードの組み合わせ' do
+      it 'カードの組み合わせの中に対象のカードが9件ある場合、ログが9件作成されること' do
+        # 対象
+        FactoryBot.create_list(:card, 2, due_date: Date.today)
+        cards1 = FactoryBot.build_list(:card, 3, due_date: Date.yesterday)
+        cards1.map { |c| c.save(validate: false) }
+        cards2 = FactoryBot.build_list(:card, 4, due_date: Date.today - 10)
+        cards2.map { |c| c.save(validate: false) }
+
+        # 対象外
+        FactoryBot.create_list(:card, 5, due_date: Date.tomorrow)
+        FactoryBot.create_list(:card, 6, due_date: Date.today + 10)
+        FactoryBot.create_list(:card, 7, due_date: nil)
+
+        expect { Card.create_due_date_notification_logs! }.to change(Log.where('content LIKE(?)', '%締切期限%'), :count).by(9)
+      end
+
+      it 'カードの組み合わせの中に対象のカードがない場合、ログが作成されないこと' do
+        FactoryBot.create_list(:card, 5, due_date: Date.tomorrow)
+        FactoryBot.create_list(:card, 6, due_date: Date.today + 10)
+        FactoryBot.create_list(:card, 7, due_date: nil)
+
+        expect { Card.create_due_date_notification_logs! }.to change(Log.where('content LIKE(?)', '%締切期限%'), :count).by(0)
+      end
+    end
+  end
 end
