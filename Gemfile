@@ -37,7 +37,6 @@ gem 'acts_as_list'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
 
   gem 'pry-rails'
@@ -58,6 +57,8 @@ end
 
 group :test do
   gem 'rails-controller-testing'
+  gem 'capybara'
+  gem 'launchy'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

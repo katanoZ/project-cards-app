@@ -7,7 +7,7 @@
           = form_with model:[project, column], local: true do |f|
             .form-group
               = f.label :name
-              = f.text_field :name, class: error_supported_field_class(instance: column, field: :name)
+              = f.text_field :name, id: :column_name, class: error_supported_field_class(instance: column, field: :name)
               = render 'shared/form_errors', instance: column, field: :name
 
             - if column.new_record?

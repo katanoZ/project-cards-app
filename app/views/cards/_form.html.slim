@@ -7,7 +7,7 @@
           = form_with model:[project, column, card], local: true do |f|
             .form-group
               = f.label :name
-              = f.text_field :name, class: error_supported_field_class(instance: card, field: :name)
+              = f.text_field :name, id: :card_name, class: error_supported_field_class(instance: card, field: :name)
               = render 'shared/form_errors', instance: card, field: :name
 
             .row

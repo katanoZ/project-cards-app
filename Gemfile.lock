@@ -113,6 +113,8 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -302,7 +304,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   byebug
-  capybara (~> 2.13)
+  capybara
   carrierwave
   cloudinary
   coffee-rails (~> 4.2)
@@ -311,6 +313,7 @@ DEPENDENCIES
   faker
   jbuilder (~> 2.5)
   kaminari (= 0.17.0)
+  launchy
   listen (>= 3.0.5, < 3.2)
   loofah (~> 2.2.1)
   mini_magick
