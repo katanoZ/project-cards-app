@@ -9,11 +9,11 @@ FactoryBot.define do
     after(:build) { |card| card.operator = FactoryBot.create(:user) }
 
     trait :name_40 do
-      name '1234567890123456789012345678901234567890'
+      name Faker::Lorem.characters(40)
     end
 
     trait :name_41 do
-      name '12345678901234567890123456789012345678901'
+      name Faker::Lorem.characters(41)
     end
   end
 end

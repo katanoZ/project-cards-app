@@ -300,7 +300,7 @@ RSpec.describe Project, type: :model do
     end
 
     it '引数のユーザがプロジェクトのホストユーザであればtrueを返すこと' do
-      expect(@project.host_user?(@project.user)).to eq true
+      expect(@project.host_user?(@project.user)).to be_truthy
     end
 
     it '引数のユーザがプロジェクトのホストユーザでなければfalseを返すこと' do
@@ -316,12 +316,12 @@ RSpec.describe Project, type: :model do
 
     it '引数のユーザがプロジェクトの招待メンバーであればtrueを返すこと' do
       user = @project.memberships.where(join: false).sample.user
-      expect(@project.member_user?(user)).to eq true
+      expect(@project.member_user?(user)).to be_truthy
     end
 
     it '引数のユーザがプロジェクトの参加メンバーであればtrueを返すこと' do
       user = @project.memberships.where(join: true).sample.user
-      expect(@project.member_user?(user)).to eq true
+      expect(@project.member_user?(user)).to be_truthy
     end
 
     it '引数のユーザがプロジェクトのメンバーでなければfalseを返すこと' do

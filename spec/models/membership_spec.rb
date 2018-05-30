@@ -31,13 +31,13 @@ RSpec.describe Membership, type: :model do
     it 'joinがfalseの場合は実行するとtrueになること' do
       membership = FactoryBot.create(:membership)
       membership.join!
-      expect(membership.join).to eq true
+      expect(membership.join).to be_truthy
     end
 
     it 'joinがtrueの場合は実行するとtrueのままであること' do
       membership = FactoryBot.create(:membership, join: true)
       membership.join!
-      expect(membership.join).to eq true
+      expect(membership.join).to be_truthy
     end
   end
 
@@ -49,7 +49,7 @@ RSpec.describe Membership, type: :model do
     it 'ユーザにprojectのホストユーザ以外が指定されると保存が成功すること' do
       user = FactoryBot.create(:user)
       membership = FactoryBot.build(:membership, project: @project, user: user)
-      expect(membership.save).to eq true
+      expect(membership.save).to be_truthy
     end
 
     it 'ユーザにprojectのホストユーザが指定されると保存が失敗すること' do
