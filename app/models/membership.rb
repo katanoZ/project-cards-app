@@ -9,6 +9,7 @@ class Membership < ApplicationRecord
   before_save :excludes_host_user
   after_create MembershipLogsCallbacks.new
   after_update MembershipLogsCallbacks.new
+  after_destroy MembershipLogsCallbacks.new
 
   paginates_per 5
 

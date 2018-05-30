@@ -11,6 +11,7 @@ class ColumnLogsCallbacks
   end
 
   def after_destroy(column)
+    return if column.operator.nil?
     content = "#{column.operator.name}さんが#{column.name}カラムを削除しました"
     Log.create!(content: content, project: column.project)
   end

@@ -13,6 +13,8 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
+  before_destroy :handles_projects, prepend: true
+
   def self.find_or_create_from_auth(auth)
     provider = auth[:provider]
     uid = auth[:uid]
@@ -39,5 +41,22 @@ class User < ApplicationRecord
 
   after_create do
     @message = 'アカウント登録しました'
+  end
+
+  private
+
+  # ホストが退会するプロジェクトに参加者がいる場合は、ホストを交代する
+  def handles_projects
+    target_projects = projects.having_participants
+    if target_projects.present?
+      manages_accounts_in(target_projects)
+    end
+  end
+
+  def manages_accounts_in(projects)
+    projects.each do |project|
+      project.change_host
+      project.logs.create(content: "ホストの#{name}さんが退会しました。最古メンバーの#{project.user.name}さんがホストになりました。")
+    end
   end
 end
