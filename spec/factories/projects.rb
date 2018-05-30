@@ -32,5 +32,9 @@ FactoryBot.define do
       after(:create) { |project| create_list(:membership, 5, project: project, join: true) }
       after(:create) { |project| create_list(:membership, 2, project: project, join: false) }
     end
+
+    trait :invalid do
+      name nil
+    end
   end
 end

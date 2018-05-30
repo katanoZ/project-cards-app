@@ -21,4 +21,8 @@ FactoryBot.define do
   trait :with_6_host_projects do
     after(:create) { |user| create_list(:project, 6, user: user) }
   end
+
+  trait :invalid do
+    name nil
+  end
 end

@@ -15,5 +15,9 @@ FactoryBot.define do
     trait :name_41 do
       name '12345678901234567890123456789012345678901'
     end
+
+    trait :invalid do
+      name nil
+    end
   end
 end
