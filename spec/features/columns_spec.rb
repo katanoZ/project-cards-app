@@ -1,5 +1,9 @@
 require 'rails_helper'
 
+# scenario中のActiveRecord::RecordNotFoundエラーを確認するためには、
+# config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施する
+
+
 RSpec.feature "Columns", type: :feature do
   feature 'ユーザがプロジェクト詳細ページからカラムの作成をする' do
     context '権限がある場合' do
@@ -60,15 +64,15 @@ RSpec.feature "Columns", type: :feature do
         @project = FactoryBot.create(:project)
       end
 
+      # 実施にはconfigの設定が必要
       scenario 'カラム作成画面に直接URL入力して遷移しようとすると、ActiveRecord::RecordNotFoundエラーになること' do
-        # config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施
         expect {
           visit new_project_column_path(@project)
         }.to raise_error(ActiveRecord::RecordNotFound)
       end
 
+      # 実施にはconfigの設定が必要
       scenario '直接URL入力してカラム作成しようとすると、ActiveRecord::RecordNotFoundエラーになること' do
-        # config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施
         expect {
           column_params = FactoryBot.attributes_for(:column)
           page.driver.submit :post, project_columns_path(@project), column_params
@@ -142,17 +146,16 @@ RSpec.feature "Columns", type: :feature do
         @column = FactoryBot.create(:column, project: @project)
       end
 
+      # 実施にはconfigの設定が必要
       scenario 'カラム編集画面に直接URL入力して遷移しようとすると、ActiveRecord::RecordNotFoundエラーになること' do
-        # config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施
         expect {
           visit edit_project_column_path(@project, @column)
         }.to raise_error(ActiveRecord::RecordNotFound)
       end
 
+      # 実施にはconfigの設定が必要
       scenario '直接URL入力してカラム編集しようとすると、ActiveRecord::RecordNotFoundエラーになること' do
         column_params = FactoryBot.attributes_for(:column)
-
-        # config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施
         expect {
           page.driver.submit :patch, project_column_path(@project, @column), column: column_params
         }.to raise_error(ActiveRecord::RecordNotFound)
@@ -217,8 +220,8 @@ RSpec.feature "Columns", type: :feature do
         @column = FactoryBot.create(:column, project: @project)
       end
 
+      # 実施にはconfigの設定が必要
       scenario '直接URL入力してカラム削除しようとすると、ActiveRecord::RecordNotFoundエラーになること' do
-        # config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施
         expect {
           page.driver.submit :delete, project_column_path(@project, @column), {}
         }.to raise_error(ActiveRecord::RecordNotFound)
@@ -306,15 +309,15 @@ RSpec.feature "Columns", type: :feature do
         @column2 = FactoryBot.create(:column, project: @project)
       end
 
+      # 実施にはconfigの設定が必要
       scenario '直接URL入力してカラム右移動しようとすると、ActiveRecord::RecordNotFoundエラーになること' do
-        # config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施
         expect {
           visit next_project_column_path(@project, @column1)
         }.to raise_error(ActiveRecord::RecordNotFound)
       end
 
+      # 実施にはconfigの設定が必要
       scenario '直接URL入力してカラム左移動しようとすると、ActiveRecord::RecordNotFoundエラーになること' do
-        # config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施
         expect {
           visit previous_project_column_path(@project, @column2)
         }.to raise_error(ActiveRecord::RecordNotFound)

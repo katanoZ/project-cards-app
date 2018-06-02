@@ -1,5 +1,8 @@
 require 'rails_helper'
 
+# scenario中のActiveRecord::RecordNotFoundエラーを確認するためには、
+# config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施する
+
 RSpec.feature "Projects", type: :feature do
   feature 'ユーザがトップページからプロジェクトを作成する' do
     context 'ログイン済みの場合' do
@@ -95,15 +98,15 @@ RSpec.feature "Projects", type: :feature do
         expect(page).not_to have_content 'プロジェクト編集'
       end
 
+      # 実施にはconfigの設定が必要
       scenario 'プロジェクト編集画面に直接URL入力して遷移しようとすると、ActiveRecord::RecordNotFoundエラーになること' do
-        # config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施
         expect {
           visit edit_project_path(@project)
         }.to raise_error(ActiveRecord::RecordNotFound)
       end
 
+      # 実施にはconfigの設定が必要
       scenario '直接URL入力して編集しようとすると、ActiveRecord::RecordNotFoundエラーになること' do
-        # config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施
         expect {
           project_params = FactoryBot.attributes_for(:project)
           page.driver.submit :patch, project_path(@project), column: project_params
@@ -161,8 +164,8 @@ RSpec.feature "Projects", type: :feature do
         @project = FactoryBot.create(:project)
       end
 
+      # 実施にはconfigの設定が必要
       scenario '直接URL入力して削除しようとすると、ActiveRecord::RecordNotFoundエラーになること' do
-        # config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施
         expect {
           page.driver.submit :delete, project_path(@project), {}
         }.to raise_error(ActiveRecord::RecordNotFound)

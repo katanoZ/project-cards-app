@@ -1,5 +1,8 @@
 require 'rails_helper'
 
+# scenario中のActiveRecord::RecordNotFoundエラーを確認するためには、
+# config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施する
+
 RSpec.feature "Cards", type: :feature do
   feature 'ユーザがプロジェクト詳細ページからカードを作成をする' do
     context '権限がある場合' do
@@ -66,15 +69,15 @@ RSpec.feature "Cards", type: :feature do
         @column = FactoryBot.create(:column, project: @project)
       end
 
+      # 実施にはconfigの設定が必要
       scenario 'カード作成画面に直接URL入力して遷移しようとすると、ActiveRecord::RecordNotFoundエラーになること' do
-        # config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施
         expect {
           visit new_project_column_card_path(@project, @column)
         }.to raise_error(ActiveRecord::RecordNotFound)
       end
 
+      # 実施にはconfigの設定が必要
       scenario '直接URL入力してカード作成しようとすると、ActiveRecord::RecordNotFoundエラーになること' do
-        # config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施
         expect {
           card_params = FactoryBot.attributes_for(:card, project: @project)
           page.driver.submit :post, project_column_cards_path(@project, @column), card_params
@@ -155,15 +158,15 @@ RSpec.feature "Cards", type: :feature do
         @card = FactoryBot.create(:card, project: @project, column: @column)
       end
 
+      # 実施にはconfigの設定が必要
       scenario 'カード編集画面に直接URL入力して遷移しようとすると、ActiveRecord::RecordNotFoundエラーになること' do
-        # config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施
         expect {
           visit edit_project_column_card_path(@project, @column, @card)
         }.to raise_error(ActiveRecord::RecordNotFound)
       end
 
+      # 実施にはconfigの設定が必要
       scenario '直接URL入力してカード編集しようとすると、ActiveRecord::RecordNotFoundエラーになること' do
-        # config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施
         expect {
           card_params = FactoryBot.attributes_for(:card, project: @project)
           page.driver.submit :patch, project_column_card_path(@project, @column, @card), card_params
@@ -236,8 +239,8 @@ RSpec.feature "Cards", type: :feature do
         @card = FactoryBot.create(:card, project: @project, column: @column)
       end
 
+      # 実施にはconfigの設定が必要
       scenario '直接URL入力してカード削除しようとすると、ActiveRecord::RecordNotFoundエラーになること' do
-        # config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施
         expect {
           page.driver.submit :delete, project_column_card_path(@project, @column, @card), {}
         }.to raise_error(ActiveRecord::RecordNotFound)
@@ -337,15 +340,15 @@ RSpec.feature "Cards", type: :feature do
         @card2 = FactoryBot.create(:card, project: @project, column: @column2)
       end
 
+      # 実施にはconfigの設定が必要
       scenario '直接URL入力してカラム右移動しようとすると、ActiveRecord::RecordNotFoundエラーになること' do
-        # config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施
         expect {
           visit next_project_column_card_path(@project, @column1, @card1)
         }.to raise_error(ActiveRecord::RecordNotFound)
       end
 
+      # 実施にはconfigの設定が必要
       scenario '直接URL入力してカラム左移動しようとすると、ActiveRecord::RecordNotFoundエラーになること' do
-        # config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施
         expect {
           visit previous_project_column_card_path(@project, @column2, @card2)
         }.to raise_error(ActiveRecord::RecordNotFound)
