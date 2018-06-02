@@ -3,7 +3,6 @@ require 'rails_helper'
 # scenario中のActiveRecord::RecordNotFoundエラーを確認するためには、
 # config/environments/test.rbでconfig.consider_all_requests_local = falseに設定して実施する
 
-
 RSpec.feature "Columns", type: :feature do
   feature 'ユーザがプロジェクト詳細ページからカラムの作成をする' do
     context '権限がある場合' do
