@@ -6,15 +6,7 @@ FactoryBot.define do
     association :column
     project { column.project }
 
-    after(:build) { |card| card.operator = FactoryBot.create(:user) }
-
-    trait :name_40 do
-      name Faker::Lorem.characters(40)
-    end
-
-    trait :name_41 do
-      name Faker::Lorem.characters(41)
-    end
+    after(:build) { |card| card.operator = card.project.user }
 
     trait :invalid do
       name nil

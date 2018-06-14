@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Card, type: :model do
-  describe 'name' do
+  describe 'nameのバリデーション' do
     it '名前があれば有効な状態であること' do
       expect(FactoryBot.build(:card)).to be_valid
     end
@@ -13,42 +13,39 @@ RSpec.describe Card, type: :model do
     end
 
     it '名前が40文字であれば有効な状態であること' do
-      card = FactoryBot.build(:card, :name_40)
+      card = FactoryBot.build(:card, name: Faker::Lorem.characters(40))
       expect(card).to be_valid
     end
 
     it '名前が41文字であれば無効な状態であること' do
-      card = FactoryBot.build(:card, :name_41)
+      card = FactoryBot.build(:card, name: Faker::Lorem.characters(41))
       card.valid?
       expect(card.errors[:name]).to include('は40文字以内で入力してください')
     end
 
     context 'プロジェクトと組み合わせた場合' do
-      before do
-        @project = FactoryBot.create(:project)
-        @card1 = FactoryBot.create(:card, project: @project, name: '資料作成')
-      end
+      let(:card) { FactoryBot.create(:card, name: '資料作成') }
 
       it '同じプロジェクトの中で違う名前であれば有効な状態であること' do
-        card2 = FactoryBot.build(:card, project: @project, name: 'テストケース作成')
-        expect(card2).to be_valid
-      end
-
-      it '同じプロジェクトの中で同じ名前であれば無効な状態であること' do
-        card2 = FactoryBot.build(:card, project: @project, name: '資料作成')
-        card2.valid?
-        expect(card2.errors[:name]).to include('はすでに存在します')
+        new_card = FactoryBot.build(:card, project: card.project, name: 'テストケース作成')
+        expect(new_card).to be_valid
       end
 
       it '違うプロジェクトの中で同じ名前であれば有効な状態であること' do
         other_project = FactoryBot.create(:project)
-        card2 = FactoryBot.build(:card, project: other_project, name: '資料作成')
-        expect(card2).to be_valid
+        new_card = FactoryBot.build(:card, project: other_project, name: card.name)
+        expect(new_card).to be_valid
+      end
+
+      it '同じプロジェクトの中で同じ名前であれば無効な状態であること' do
+        new_card = FactoryBot.build(:card, project: card.project, name: card.name)
+        new_card.valid?
+        expect(new_card.errors[:name]).to include('はすでに存在します')
       end
     end
   end
 
-  describe 'due_date' do
+  describe 'due_dateのバリデーション' do
     it '今日の日付が入っていれば有効な状態であること' do
       card = FactoryBot.build(:card, due_date: Date.today)
       expect(card).to be_valid
@@ -77,7 +74,7 @@ RSpec.describe Card, type: :model do
     end
   end
 
-  describe 'self.create_due_date_notification_logs!' do
+  describe '.create_due_date_notification_logs!' do
     context 'カードの種類' do
       it '今日が期限のカードがある場合、ログの種類と数が正しいこと' do
         FactoryBot.create_list(:card, 2, due_date: Date.today)
