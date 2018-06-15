@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe 'name' do
+  describe 'nameのバリデーション' do
     it '名前があれば有効な状態であること' do
       expect(FactoryBot.build(:user)).to be_valid
     end
@@ -13,7 +13,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe 'self.find_or_create_from_auth' do
+  describe '.find_or_create_from_auth' do
     before do
       @auth = Faker::Omniauth.facebook
       @provider = @auth[:provider]
@@ -31,7 +31,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe 'search' do
+  describe ':search' do
     context '名前の種類' do
       it 'キーワードが先頭に含まれている場合、検索結果にユーザが含まれること' do
         user = FactoryBot.create(:user, name: '検索あいうえお')
@@ -72,61 +72,60 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe 'notifications_count' do
+  describe '#notifications_count' do
     it 'ユーザに招待も参加もない場合は0を返す' do
       user = FactoryBot.create(:user)
-      expect(user.notifications_count).to eq 0
+      expect(user.notifications_count).to be 0
     end
 
     it 'ユーザに招待だけがある場合は招待数を返す' do
       user = FactoryBot.create(:user, :with_5_invitations)
-      expect(user.notifications_count).to eq 5
+      expect(user.notifications_count).to be 5
     end
 
     it 'ユーザに招待と参加がある場合は招待数を返す' do
       user = FactoryBot.create(:user, :with_4_invitations_and_3_participations)
-      expect(user.notifications_count).to eq 4
+      expect(user.notifications_count).to be 4
     end
 
     it 'ユーザに参加だけがある場合は0を返す' do
       user = FactoryBot.create(:user, :with_6_participations)
-      expect(user.notifications_count).to eq 0
+      expect(user.notifications_count).to be 0
     end
   end
 
   describe 'before_destroy' do
-    before do
-      @user = FactoryBot.create(:user, :with_6_host_projects)
-      @project = @user.projects.first
-    end
+    let(:user) { FactoryBot.create(:user, :with_6_host_projects) }
+    let(:project) { user.projects.first }
 
-    describe 'handles_projects' do
+    describe '#handles_projects' do
       it 'ユーザがホストをしているプロジェクトの中に参加者がいる場合は、manages_accounts_inメソッドを実行すること' do
-        FactoryBot.create(:membership, project: @project, join: true)
-        expect(@user).to receive(:manages_accounts_in)
-        @user.destroy
+        FactoryBot.create(:membership, project: project, join: true)
+        expect(user).to receive(:manages_accounts_in)
+        user.destroy
       end
 
       it 'ユーザがホストをしているプロジェクトに参加者がいない場合は、anages_accounts_inメソッドを実行しないこと' do
-        FactoryBot.create(:membership, project: @project, join: false)
-        expect(@user).not_to receive(:manages_accounts_in)
-        @user.destroy
+        FactoryBot.create(:membership, project: project, join: false)
+        expect(user).not_to receive(:manages_accounts_in)
+        user.destroy
       end
     end
 
-    describe 'manages_accounts_in' do
+    describe '#manages_accounts_in' do
       before do
-        FactoryBot.create(:membership, project: @project, join: true)
+        FactoryBot.create(:membership, project: project, join: true)
       end
 
       it 'ユーザがホストをしているプロジェクトの中に処理対象が1件ある場合は、該当プロジェクトのログが1件増えること' do
-        expect { @user.destroy }.to change(Log.where(project: @project), :count).by(1)
+        FactoryBot.create(:membership, project: project, join: true)
+        expect { user.destroy }.to change(Log.where(project: project), :count).by(1)
       end
 
       it 'ユーザがホストをしているプロジェクトの中に処理対象が複数件ある場合は、該当プロジェクトのログが複数件増えること' do
-        @project2 = @user.projects.last
-        FactoryBot.create(:membership, project: @project2, join: true)
-        expect { @user.destroy }.to change(Log.where(project: [@project, @project2]), :count).by(2)
+        project2 = user.projects.last
+        FactoryBot.create(:membership, project: project2, join: true)
+        expect { user.destroy }.to change(Log.where(project: [project, project2]), :count).by(2)
       end
     end
   end
