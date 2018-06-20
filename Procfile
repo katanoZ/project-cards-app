@@ -1,2 +1,2 @@
-release: bundle exec rails db:migrate
-web: bundle exec rails server -p $PORT
+rails: rails server
+webpack: bin/webpack-dev-server
