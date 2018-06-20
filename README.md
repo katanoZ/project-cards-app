@@ -42,4 +42,19 @@ https://project-cards-app.herokuapp.com/
 退会するユーザがホストをしているプロジェクトがある場合、そのプロジェクトに参加者がいれば、一番古い参加者が代わってプロジェクトのホストになります。プロジェクトに参加者がいない場合は、プロジェクトは削除されます。
 
 ## ER図
-![ER図](https://user-images.githubusercontent.com/3204814/41582000-5a367c00-73db-11e8-9a22-cc3b48e97423.png)
+![ER図](https://user-images.githubusercontent.com/3204814/41639414-a341470a-7498-11e8-9758-edd8cf64e4e8.png)
+
+## 実行方法
+1. リポジトリをローカルにクローン  
+`git clone git@github.com:katanoZ/project-cards-app.git`
+
+2. 必要なGemをインストール  
+`bundle install`
+
+3. データベースを設定  
+`rails db:create`  
+`rails db:migrate`
+
+4. アプリの起動  
+`bundle exec foreman start`で起動。（ポートはデフォルトで5000）  
+railsとwebpackerのプロセスが同時に立ち上がります。
