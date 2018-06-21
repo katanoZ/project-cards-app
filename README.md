@@ -46,15 +46,24 @@ https://project-cards-app.herokuapp.com/
 
 ## 実行方法
 1. リポジトリをローカルにクローン  
-`git clone git@github.com:katanoZ/project-cards-app.git`
+```
+git clone git@github.com:katanoZ/project-cards-app.git
+```
 
 2. 必要なGemをインストール  
-`bundle install`
+```
+bundle install
+```
 
 3. データベースを設定  
-`rails db:create`  
-`rails db:migrate`
+```
+rails db:create  
+rails db:migrate
+```
 
 4. アプリの起動  
-`bundle exec foreman start`で起動。（ポートはデフォルトで5000）  
+```
+bundle exec foreman start
+```
+上記コマンドで起動。（ポートはデフォルトで5000）  
 railsとwebpackerのプロセスが同時に立ち上がります。
