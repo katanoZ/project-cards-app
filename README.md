@@ -55,8 +55,14 @@ git clone git@github.com:katanoZ/project-cards-app.git
 bundle install
 ```
 
+3. javascriptパッケージ群のインストール
+```
+yarn install
+```
+
 3. データベースを設定  
 ```
+rails db:create
 rails db:migrate
 ```
 
