@@ -60,13 +60,13 @@ bundle install
 yarn install
 ```
 
-3. データベースを設定  
+4. データベースを設定  
 ```
 rails db:create
 rails db:migrate
 ```
 
-4. アプリの起動  
+5. アプリの起動  
 ```
 bundle exec foreman start
 ```
