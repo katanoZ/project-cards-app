@@ -1,3 +1,9 @@
+***このコードを書いてから1年後の2019年に、同じアプリケーションを書き直して再度作成ました。そちらを参照ください。***   
+→
+https://github.com/katanoZ/project_cards_tasks
+
+
+
 # project cards app  
 （カード型プロジェクト＆タスク管理アプリ）  
 https://project-cards-app.herokuapp.com/
