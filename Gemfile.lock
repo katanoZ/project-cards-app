@@ -173,7 +173,7 @@ GEM
     pry-rails (0.3.6)
       pry (>= 0.10.4)
     public_suffix (3.0.2)
-    puma (3.11.2)
+    puma (3.12.2)
     rack (2.0.4)
     rack-dev-mark (0.7.7)
       rack (>= 1.1, < 2.1)
@@ -327,7 +327,7 @@ DEPENDENCIES
   omniauth-twitter
   pg (>= 0.18, < 2.0)
   pry-rails
-  puma (~> 3.7)
+  puma (~> 3.12)
   rack-dev-mark
   rails (~> 5.1.5)
   rails-controller-testing
