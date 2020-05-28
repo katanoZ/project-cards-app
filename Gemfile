@@ -32,7 +32,7 @@ gem 'mini_magick'
 gem 'cloudinary'
 
 gem 'faker'
-gem 'kaminari', '0.17.0'
+gem 'kaminari', '1.2.1'
 gem 'acts_as_list'
 gem 'foreman'
 
